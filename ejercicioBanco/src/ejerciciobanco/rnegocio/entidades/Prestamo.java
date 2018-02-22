@@ -3,14 +3,14 @@ package ejerciciobanco.rnegocio.entidades;
 
 public class Prestamo {
     private String RegistroImporte;
-    private String Pagos;
-    private String Ahorros;
+    private double Pagos;
+    private double Ahorros;
     private int CodigoPr;
 
     public Prestamo() {
     }
 
-    public Prestamo(String RegistroImporte, String Pagos, String Ahorros, int CodigoPr) {
+    public Prestamo(String RegistroImporte, double Pagos, double Ahorros, int CodigoPr) {
         this.RegistroImporte = RegistroImporte;
         this.Pagos = Pagos;
         this.Ahorros = Ahorros;
@@ -25,19 +25,19 @@ public class Prestamo {
         this.RegistroImporte = RegistroImporte;
     }
 
-    public String getPagos() {
+    public double getPagos() {
         return Pagos;
     }
 
-    public void setPagos(String Pagos) {
+    public void setPagos(double Pagos) {
         this.Pagos = Pagos;
     }
 
-    public String getAhorros() {
+    public double getAhorros() {
         return Ahorros;
     }
 
-    public void setAhorros(String Ahorros) {
+    public void setAhorros(double Ahorros) {
         this.Ahorros = Ahorros;
     }
 
@@ -48,9 +48,9 @@ public class Prestamo {
     public void setCodigoPr(int CodigoPr) {
         this.CodigoPr = CodigoPr;
     }
-   
-    @Override
-    public String toString(){
-        return Ahorros;
+
+     @Override
+    public String toString() {
+        return RegistroImporte; 
     }
 }

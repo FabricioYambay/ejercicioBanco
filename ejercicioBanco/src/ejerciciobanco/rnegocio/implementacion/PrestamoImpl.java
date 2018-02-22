@@ -99,8 +99,8 @@ public class PrestamoImpl implements IPrestamo {
             while (rst.next()) {
                 prestamo = new Prestamo();
                 prestamo.setRegistroImporte(rst.getString(1));
-                prestamo.setPagos(rst.getString(2));
-                prestamo.setAhorros(rst.getString(3));
+                prestamo.setPagos(rst.getDouble(2));
+                prestamo.setAhorros(rst.getDouble(3));
                 prestamo.setCodigoPr(rst.getInt(4));
                 
                 
@@ -127,8 +127,8 @@ public class PrestamoImpl implements IPrestamo {
             while (rst.next()) {
                 prestamo = new Prestamo();
                 prestamo.setRegistroImporte(rst.getString(1));
-                prestamo.setPagos(rst.getString(2));
-                prestamo.setAhorros(rst.getString(3));
+                prestamo.setPagos(rst.getDouble(2));
+                prestamo.setAhorros(rst.getDouble(3));
                 prestamo.setCodigoPr(rst.getInt(4));             
                 lista.add(prestamo);
             }

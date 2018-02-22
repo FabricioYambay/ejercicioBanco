@@ -32,7 +32,13 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaCuenta;
     JMenuItem mniBuscaCuenta;
     JMenuItem mniListaCuenta;
-    
+    //Clientes
+    JMenu mnCliente;
+    JMenuItem mniNuevoCliente;
+    JMenuItem mniModificaCliente;
+    JMenuItem mniEliminaCliente;
+    JMenuItem mniBuscarCliente;
+    JMenuItem mniListarCliente;
     //Empleado
     JMenu mnEmpleado;
     JMenuItem mniNuevoEmpleado;
@@ -92,7 +98,32 @@ public class FrmMenuPrincipal extends JFrame {
         mnbPrincipal.add(mnInicio);
         mnbPrincipal.add(mnSucursal);
         
+        mnCliente = new JMenu("Cliente");
+        mniNuevoCliente = new JMenuItem("Nuevo");
+        mniNuevoCliente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoCLienteActionPerformed(e);
+            }
+        });
+        mniModificaCliente = new JMenuItem("Modificar");
+        mniEliminaCliente = new JMenuItem("Eliminar");
+        mniBuscarCliente = new JMenuItem("Buscar");
+        mniListarCliente = new JMenuItem("Listar");
+        mniListarCliente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaCLienteActionPerformed(e);
+            }
+        });
         
+        mnCliente.add(mniNuevoCliente);
+        mnCliente.add(mniModificaCliente);
+        mnCliente.add(mniEliminaCliente);
+        mnCliente.addSeparator();
+        mnCliente.add(mniBuscarCliente);
+        mnCliente.add(mniListarCliente);
+        mnbPrincipal.add(mnCliente);
         //Empleado
         mnEmpleado = new JMenu("Empleado");
         mniNuevoEmpleado = new JMenuItem("Nuevo");
@@ -212,4 +243,15 @@ public class FrmMenuPrincipal extends JFrame {
 
     }
 
+    
+    public void mniNuevoCLienteActionPerformed(ActionEvent e){
+        FrmNuevoCliente frm = new FrmNuevoCliente();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    } 
+    public void mniListaCLienteActionPerformed(ActionEvent e){
+        FrmNuevoCliente frm = new FrmNuevoCliente();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    } 
 }

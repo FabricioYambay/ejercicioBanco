@@ -261,15 +261,15 @@ public class FrmMenuPrincipal extends JFrame {
 
     //Prestamo
      public void mniNuevoPrestamoActionPerformed(ActionEvent e) {
-//        FrmNuevoPrestamo frm = new FrmNuevoPrestamo();
-//        dkpEscritorio.add(frm);
-//        frm.setVisible(true);
+        FrmNuevoPrestamo frm = new FrmNuevoPrestamo();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
     }
 
     public void mniListarPrestamoActionPerdormed(ActionEvent e) {
-//        FrmListaPrestamo frm = new FrmListaPrestamo();
-//        dkpEscritorio.add(frm);
-//        frm.setVisible(true);
+        FrmListaPrestamo frm = new FrmListaPrestamo();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
     }
     
     //Empleado

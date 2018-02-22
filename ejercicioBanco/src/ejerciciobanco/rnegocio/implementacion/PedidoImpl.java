@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author eddyf
  */
-public class PedidoImpl {
+public class PedidoImpl implents PedidoI{
     @Override
     public int insertar(Pedido sucursal) throws Exception {
         int numFilasAfectadas = 0;

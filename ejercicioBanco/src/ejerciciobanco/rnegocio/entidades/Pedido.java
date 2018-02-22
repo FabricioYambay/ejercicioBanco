@@ -17,6 +17,9 @@ public class Pedido {
    private Inspector inspector;
     private Prestamo prestamo;
 
+    public Pedido() {
+    }
+
     public Pedido(int CodigoP, String Resultado, Cuenta cuenta, Inspector inspector, Prestamo prestamo) {
         this.CodigoP = CodigoP;
         this.Resultado = Resultado;

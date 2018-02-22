@@ -7,7 +7,10 @@ package ejerciciobanco.rnegocio.implementacion;
 
 import ejerciciobanco.accesodatos.*;
 import ejerciciobanco.accesodatos.Parametro;
-import ejerciciobanco.rnegocio.dao.ISucursal;
+import ejerciciobanco.rnegocio.dao.*;
+import ejerciciobanco.rnegocio.entidades.Cuenta;
+import ejerciciobanco.rnegocio.entidades.Empleado;
+import ejerciciobanco.rnegocio.entidades.Prestamo;
 import ejerciciobanco.rnegocio.entidades.Sucursal;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -23,14 +26,12 @@ public class SucursalImpl implements ISucursal {
     public int insertar(Sucursal sucursal) throws Exception {
         int numFilasAfectadas = 0;
         String sql = "insert into Sucursal  values "
-                + "(?,?,?,?,?,?)";
+                + "(?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, sucursal.getCodigoS()));
         lstPar.add(new Parametro(2, sucursal.getCiudad()));
         lstPar.add(new Parametro(3, sucursal.getDireccion()));
-        lstPar.add(new Parametro(4, sucursal.getCuenta().getNumerocuenta()));
-        lstPar.add(new Parametro(5, sucursal.getEmpleado().getCdigoE()));
-        lstPar.add(new Parametro(6, sucursal.getPrestamo().getNum_prestamo()));
+        lstPar.add(new Parametro(4, sucursal.getPrestamo().getCodigoPr()));
 
         Conexion con = null;
         try {
@@ -51,15 +52,13 @@ public class SucursalImpl implements ISucursal {
     public int modificar(Sucursal sucursal) throws Exception {
         int numFilasAfectadas = 0;
         String sql = "UPDATE sucursal"
-                + "   SET codigoS=?, ciudad=?, direccion=?, numerocuenta=?, =?,codigoe=?,num_prestamo "
+                + "   SET codigoS=?, ciudad=?, direccion=?,codigopr=? "
                 + " where codigoS=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, sucursal.getCodigoS()));
         lstPar.add(new Parametro(2, sucursal.getCiudad()));
         lstPar.add(new Parametro(3, sucursal.getDireccion()));
-        lstPar.add(new Parametro(4, sucursal.getCuenta().getNumerocuenta()));
-        lstPar.add(new Parametro(5, sucursal.getEmpleado().getCodigoE()));
-        lstPar.add(new Parametro(6, sucursal.getPrestamo().getNum_prestamo()));
+        lstPar.add(new Parametro(5, sucursal.getPrestamo().getCodigoPr()));
 
         Conexion con = null;
         try {
@@ -100,10 +99,6 @@ public class SucursalImpl implements ISucursal {
     @Override
     public Sucursal obtener(int codigoS) throws Exception {
         Sucursal sucursal = null;
-        Cuenta cuenta = null;
-        ICuenta cuentaDao = new CuentaImpl();
-        Empleado empleado = null;
-        IEmpleado empleadoDao = new EmpleadoImpl();
         Prestamo prestamo = null;
         IPrestamo prestamoDao = new PrestamoImpl();
         String sql = "SELECT * FROM sucursal where codigoS=?;";
@@ -116,18 +111,12 @@ public class SucursalImpl implements ISucursal {
             ResultSet rst = con.ejecutaQuery(sql, lstPar);
 
             while (rst.next()) {
-                Cuenta = new Cuenta();
-                cuenta = cuentaDao.obtener(rst.getInt(4));
-                Empleado = new Empleado();
-                empleado = empleadoDao.obtener(rst.getInt(5));
-                Prestamo = new Prestamo();
-                prestamo = prestamoDao.obtener(rst.getInt(6));
+                prestamo = new Prestamo();
+                prestamo = prestamoDao.obtener(rst.getInt(4));
                 sucursal = new Sucursal();
                 sucursal.setCodigoS(rst.getInt(1));
                 sucursal.setCiudad(rst.getString(2));
                 sucursal.setDireccion(rst.getString(3));
-                sucursal.setCuenta(cuenta);
-                sucursal.setEmpleado(empleado);
                 sucursal.setPrestamo(prestamo);
 
             }
@@ -144,9 +133,10 @@ public class SucursalImpl implements ISucursal {
     @Override
     public List<Sucursal> obtener() throws Exception {
         List<Sucursal> lista = new ArrayList<>();
-        Cuenta cuenta = null;
-        ICuenta cuentaDao = new CuentaImpl();
-        String sql = "SELECT * FROM entrada ";
+        Prestamo prestamo = null;
+        IPrestamo prestamoDao = new PrestamoImpl();
+        
+        String sql = "SELECT * FROM sucursal ";
         Conexion con = null;
         try {
             con = new Conexion();
@@ -154,18 +144,12 @@ public class SucursalImpl implements ISucursal {
             ResultSet rst = con.ejecutaQuery(sql, null);
             Sucursal sucursal = null;
             while (rst.next()) {
-                proveedor = new Proveedor();
-                proveedor = proveedorDao.obtener(rst.getInt(2));
-                Empleado empleado = null;
-                IEmpleado empleadoDao = new EmpleadoImpl();
-                Prestamo prestamo = null;
-                IPrestamo prestamoDao = new PrestamoImpl();
+                prestamo = new Prestamo();
+                prestamo = prestamoDao.obtener(rst.getInt(4));
                 sucursal = new Sucursal();
                 sucursal.setCodigoS(rst.getInt(1));
                 sucursal.setCiudad(rst.getString(2));
                 sucursal.setDireccion(rst.getString(3));
-                sucursal.setCuenta(cuenta);
-                sucursal.setEmpleado(empleado);
                 sucursal.setPrestamo(prestamo);
 
                 lista.add(sucursal);

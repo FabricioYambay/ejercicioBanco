@@ -13,17 +13,17 @@ public class Pedido {
     
     private int CodigoP;
     private String Resultado;
-    private Cuenta cuenta;
+    private Cliente cliente;
    private Inspector inspector;
     private Prestamo prestamo;
 
     public Pedido() {
     }
 
-    public Pedido(int CodigoP, String Resultado, Cuenta cuenta, Inspector inspector, Prestamo prestamo) {
+    public Pedido(int CodigoP, String Resultado, Cliente cliente, Inspector inspector, Prestamo prestamo) {
         this.CodigoP = CodigoP;
         this.Resultado = Resultado;
-        this.cuenta = cuenta;
+        this.cliente = cliente;
         this.inspector = inspector;
         this.prestamo = prestamo;
     }
@@ -36,8 +36,8 @@ public class Pedido {
         return Resultado;
     }
 
-    public Cuenta getCuenta() {
-        return cuenta;
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public Inspector getInspector() {
@@ -56,8 +56,8 @@ public class Pedido {
         this.Resultado = Resultado;
     }
 
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public void setInspector(Inspector inspector) {

@@ -2,11 +2,11 @@ package ejerciciobanco.rnegocio.implementacion;
 
 import ejerciciobanco.accesodatos.Conexion;
 import ejerciciobanco.accesodatos.Parametro;
-import ejerciciobanco.rnegocio.dao.ICuenta;
+import ejerciciobanco.rnegocio.dao.ICliente;
 import ejerciciobanco.rnegocio.dao.IInspector;
 import ejerciciobanco.rnegocio.dao.IPedido;
 import ejerciciobanco.rnegocio.dao.IPrestamo;
-import ejerciciobanco.rnegocio.entidades.Cuenta;
+import ejerciciobanco.rnegocio.entidades.Cliente;
 import ejerciciobanco.rnegocio.entidades.Inspector;
 import ejerciciobanco.rnegocio.entidades.Pedido;
 import ejerciciobanco.rnegocio.entidades.Prestamo;
@@ -28,7 +28,7 @@ public class PedidoImpl implements IPedido {
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, pedido.getCodigoP()));
         lstPar.add(new Parametro(2, pedido.getResultado()));
-        lstPar.add(new Parametro(3, pedido.getCuenta().getNumerocuenta()));
+        lstPar.add(new Parametro(3, pedido.getCliente().getNombre()));
         lstPar.add(new Parametro(4, pedido.getPrestamo().getCodigoPr()));
         lstPar.add(new Parametro(5, pedido.getInspector().getCodigoI()));
 
@@ -55,7 +55,7 @@ public class PedidoImpl implements IPedido {
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, pedido.getCodigoP()));
         lstPar.add(new Parametro(2, pedido.getResultado()));
-        lstPar.add(new Parametro(3, pedido.getCuenta().getNumerocuenta()));
+        lstPar.add(new Parametro(3, pedido.getCliente().getNombre()));
         lstPar.add(new Parametro(4, pedido.getPrestamo().getCodigoPr()));
         lstPar.add(new Parametro(5, pedido.getInspector().getCodigoI()));
 
@@ -103,8 +103,8 @@ public class PedidoImpl implements IPedido {
         IPedido pedidoDao=new PedidoImpl();
         Inspector inspector = null;
         IInspector inspectorDao = new InspectorImpl();
-        Cuenta cuenta = null;
-        ICuenta cuentaDao = new CuentaImpl();
+        Cliente cliente = null;
+        ICliente clienteDao = new ClienteImpl();
 
         
         String sql = "SELECT * FROM pedido where codigoP=?;";
@@ -128,7 +128,7 @@ public class PedidoImpl implements IPedido {
                 pedido.setCodigoP(rst.getInt(1));
                 pedido.setResultado(rst.getString(2));
 
-                pedido.setCuenta(cuenta);
+                pedido.setCliente(cliente);
 
                 pedido.setPrestamo(prestamo);
                 pedido.setInspector(inspector);
@@ -147,12 +147,12 @@ public class PedidoImpl implements IPedido {
     @Override
     public List<Pedido> obtener() throws Exception {
         List<Pedido> lista = new ArrayList<>();
-        Cuenta cuenta = null;
+        Cliente cliente = null;
         Prestamo prestamo = null;
         IPrestamo prestamoDao = new PrestamoImpl();
         Inspector inspector = null;
         IInspector inspectorDao = new InspectorImpl();
-        ICuenta cuentaDao = new CuentaImpl();
+        ICliente clienteDao = new ClienteImpl();
         Pedido pedido=null;
         IPedido pedDao=new PedidoImpl();
         String sql = "SELECT * FROM Pedido ";
@@ -162,12 +162,12 @@ public class PedidoImpl implements IPedido {
             con.conectar();
             ResultSet rst = con.ejecutaQuery(sql, null);
             while (rst.next()) {
-                cuenta = new Cuenta();
+                cliente = new Cliente();
                 pedido = new Pedido();
                 
                 pedido.setCodigoP(rst.getInt(1));
                 pedido.setResultado(rst.getString(2));
-                pedido.setCuenta(cuenta);
+                pedido.setCliente(cliente);
                 pedido.setInspector(inspector);
                 pedido.setPrestamo(prestamo);
 

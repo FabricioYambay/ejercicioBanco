@@ -1,17 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejerciciobanco.rnegocio.entidades;
 
 public class CuentaAhorro {
     private int codigoca;
     private double interes;
+    private Cuenta cuenta;
 
-    public CuentaAhorro(int codigoca, double interes) {
+    public CuentaAhorro(int codigoca, double interes, Cuenta cuenta) {
         this.codigoca = codigoca;
         this.interes = interes;
+        this.cuenta = cuenta;
     }
 
     public CuentaAhorro() {
@@ -32,4 +29,14 @@ public class CuentaAhorro {
     public void setInteres(double interes) {
         this.interes = interes;
     }
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+    
+
 }

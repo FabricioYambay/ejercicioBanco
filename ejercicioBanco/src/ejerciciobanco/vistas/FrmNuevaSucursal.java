@@ -5,6 +5,9 @@
  */
 package ejerciciobanco.vistas;
 
+import ejerciciobanco.rnegocio.dao.*;
+import ejerciciobanco.rnegocio.entidades.*;
+import ejerciciobanco.rnegocio.implementacion.*;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -18,17 +21,11 @@ import javax.swing.*;
  */
 public class FrmNuevaSucursal extends JInternalFrame {
 
-    List<Cuenta> lstCuenta;
-    JComboBox<Cuenta> cmbCuenta;
-    List<Empleado> lstEmpleado;
-    JComboBox<Empleado> cmbEmpleado;
     List<Prestamo> lstPrestamo;
     JComboBox<Prestamo> cmbPrestamo;
     JLabel lblCodigoS;
     JLabel lblCiudad;
     JLabel lblDireccion;
-    JLabel lblCuenta;
-    JLabel lblEmpleado;
     JLabel lblPrestamo;
     JLabel lblTitulo;
 
@@ -56,17 +53,11 @@ public class FrmNuevaSucursal extends JInternalFrame {
         lblCodigoS = new JLabel("Código:");
         lblCiudad = new JLabel("Ciudad:");
         lblDireccion = new JLabel("Direccion:");
-        lblCuenta = new JLabel("Cuenta:");
-        lblEmpleado = new JLabel("Empleado:");
         lblPrestamo = new JLabel("Prestamo:");
         
         txtCodigoS = new JTextField(2);
         txtCiudad = new JTextField(2);
         txtDireccion = new JTextField(2);
-        cargarCuenta();
-        cmbCuenta = new JComboBox(lstCuenta.toArray());
-        cargarEmpleado();
-        cmbEmpleado = new JComboBox(lstEmpleado.toArray());
         cargarPrestamo();
         cmbPrestamo = new JComboBox(lstPrestamo.toArray());
     
@@ -79,10 +70,6 @@ public class FrmNuevaSucursal extends JInternalFrame {
         pnlCentral.add(txtCiudad);
         pnlCentral.add(lblDireccion);
         pnlCentral.add(txtDireccion);
-        pnlCentral.add(lblCuenta);
-        pnlCentral.add(cmbCuenta);
-        pnlCentral.add(lblEmpleado);
-        pnlCentral.add(cmbEmpleado);
         pnlCentral.add(lblPrestamo);
         pnlCentral.add(cmbPrestamo);
         
@@ -108,26 +95,7 @@ public class FrmNuevaSucursal extends JInternalFrame {
         FrmNuevaSucursal frmMenu= new FrmNuevaSucursal();
         frmMenu.setVisible(true);
     } 
-    public void cargarCuenta(){
-        ICuenta cuentaDao = new CuentaImpl();
-        try {
-            lstCuenta = cuentaDao.obtener();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Error al cargar las Cuentas!!",
-                "Error"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }
-    public void cargarEmpleado(){
-        IEmpleado empleadoDao = new EmpleadoImpl();
-        try {
-            lstEmpleado = empleadoDao.obtener();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Error al cargar las Empleado!!",
-                "Error"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }
+ 
     public void cargarPrestamo(){
         IPrestamo prestamoDao = new PrestamoImpl();
         try {
@@ -141,13 +109,11 @@ public class FrmNuevaSucursal extends JInternalFrame {
     public void btnAceptarActionListener(ActionEvent e){
         Sucursal sucursal = new Sucursal();
         ISucursal sucursalDao = new SucursalImpl();
-        sucursal.setCodigoK(Integer.parseInt(txtCodigoS.getText()));
+        sucursal.setCodigoS(Integer.parseInt(txtCodigoS.getText()));
         sucursal.setCiudad(txtCiudad.getText());
         sucursal.setDireccion(txtDireccion.getText());
-        sucursal.setCuenta((Cuenta) cmbCuenta.getSelectedItem());
-        sucursal.setEmpleado((Empleado) cmbEmpleado.getSelectedItem());
         sucursal.setPrestamo((Prestamo) cmbPrestamo.getSelectedItem());
-        sucursal.setDetalle(txtDetalle.getText());
+        
         try {
             if (sucursalDao.insertar(sucursal) > 0) {
                 JOptionPane.showMessageDialog(this, "Registrado correctamente!!",

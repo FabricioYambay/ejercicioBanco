@@ -54,6 +54,27 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaPrestamo;
     JMenuItem mniBuscarPrestamo;
     JMenuItem mniListarPrestamo;
+    //Pedido
+    JMenu mnPedido;
+    JMenuItem mniNuevoPedido;
+    JMenuItem mniModificaPedido;
+    JMenuItem mniEliminaPedido;
+    JMenuItem mniBuscarPedido;
+    JMenuItem mniListarPedido;
+    //Pago
+    JMenu mnPago;
+    JMenuItem mniNuevoPago;
+    JMenuItem mniModificaPago;
+    JMenuItem mniEliminaPago;
+    JMenuItem mniBuscarPago;
+    JMenuItem mniListarPago;
+    //Inspector
+    JMenu mnInspector;
+    JMenuItem mniNuevoInspector;
+    JMenuItem mniModificaInspector;
+    JMenuItem mniEliminaInspector;
+    JMenuItem mniBuscarInspector;
+    JMenuItem mniListarInspector;
  
     JDesktopPane dkpEscritorio;
 
@@ -95,8 +116,6 @@ public class FrmMenuPrincipal extends JFrame {
         mnSucursal.addSeparator();
         mnSucursal.add(mniBuscarSucursal);
         mnSucursal.add(mniListarSucursal);
-        mnbPrincipal.add(mnInicio);
-        mnbPrincipal.add(mnSucursal);
         
         mnCliente = new JMenu("Cliente");
         mniNuevoCliente = new JMenuItem("Nuevo");
@@ -116,14 +135,12 @@ public class FrmMenuPrincipal extends JFrame {
                 mniListaCLienteActionPerformed(e);
             }
         });
-        
         mnCliente.add(mniNuevoCliente);
         mnCliente.add(mniModificaCliente);
         mnCliente.add(mniEliminaCliente);
         mnCliente.addSeparator();
         mnCliente.add(mniBuscarCliente);
         mnCliente.add(mniListarCliente);
-        mnbPrincipal.add(mnCliente);
         //Empleado
         mnEmpleado = new JMenu("Empleado");
         mniNuevoEmpleado = new JMenuItem("Nuevo");
@@ -179,13 +196,58 @@ public class FrmMenuPrincipal extends JFrame {
         mnPrestamo.add(mniListarPrestamo);
         
         
-        mnEmpleado.add(mnInicio);
-        mnEmpleado.add(mnSucursal);
-        mnEmpleado.add(mnEmpleado);
+        mnPedido = new JMenu("Pedido");
+        mniNuevoPedido = new JMenuItem("Nuevo");
+        mniModificaPedido = new JMenuItem("Modificar");
+        mniEliminaPedido = new JMenuItem("Eliminar");
+        mniBuscarPedido = new JMenuItem("Buscar");
+        mniListarPedido = new JMenuItem("Listar");
+        mnPedido.add(mniNuevoPedido);
+        mnPedido.add(mniModificaPedido);
+        mnPedido.add(mniEliminaPedido);
+        mnPedido.addSeparator();
+        mnPedido.add(mniBuscarPedido);
+        mnPedido.add(mniListarPedido);
+        
+        mnPago = new JMenu("Pago");
+        mniNuevoPago = new JMenuItem("Nuevo");
+        mniModificaPago = new JMenuItem("Modificar");
+        mniEliminaPago = new JMenuItem("Eliminar");
+        mniBuscarPago = new JMenuItem("Buscar");
+        mniListarPago = new JMenuItem("Listar");
+        mnPago.add(mniNuevoPago);
+        mnPago.add(mniModificaPago);
+        mnPago.add(mniEliminaPago);
+        mnPago.addSeparator();
+        mnPago.add(mniBuscarPago);
+        mnPago.add(mniListarPago);
+        
+        mnInspector = new JMenu("Inspector");
+        mniNuevoInspector = new JMenuItem("Nuevo");
+        mniModificaInspector = new JMenuItem("Modificar");
+        mniEliminaInspector = new JMenuItem("Eliminar");
+        mniBuscarInspector = new JMenuItem("Buscar");
+        mniListarInspector = new JMenuItem("Listar");
+        mnInspector.add(mniNuevoInspector);
+        mnInspector.add(mniModificaInspector);
+        mnInspector.add(mniEliminaInspector);
+        mnInspector.addSeparator();
+        mnInspector.add(mniBuscarInspector);
+        mnInspector.add(mniListarInspector);
+        
+        
         
         mnInicio.add(mniLogin);
         mnInicio.add(mniSalir);
 
+        mnbPrincipal.add(mnInicio);
+        mnbPrincipal.add(mnCliente);
+        mnbPrincipal.add(mnCuenta);
+        mnbPrincipal.add(mnPedido);
+        mnbPrincipal.add(mnPago);
+        mnbPrincipal.add(mnSucursal);
+        mnbPrincipal.add(mnEmpleado);
+        mnbPrincipal.add(mnInspector);
         this.setLayout(new BorderLayout());
         this.add(mnbPrincipal, BorderLayout.NORTH);
         this.add(dkpEscritorio, BorderLayout.CENTER);
@@ -199,15 +261,15 @@ public class FrmMenuPrincipal extends JFrame {
 
     //Prestamo
      public void mniNuevoPrestamoActionPerformed(ActionEvent e) {
-        FrmNuevoPrestamo frm = new FrmNuevoPrestamo();
-        dkpEscritorio.add(frm);
-        frm.setVisible(true);
+//        FrmNuevoPrestamo frm = new FrmNuevoPrestamo();
+//        dkpEscritorio.add(frm);
+//        frm.setVisible(true);
     }
 
     public void mniListarPrestamoActionPerdormed(ActionEvent e) {
-        FrmListaPrestamo frm = new FrmListaPrestamo();
-        dkpEscritorio.add(frm);
-        frm.setVisible(true);
+//        FrmListaPrestamo frm = new FrmListaPrestamo();
+//        dkpEscritorio.add(frm);
+//        frm.setVisible(true);
     }
     
     //Empleado

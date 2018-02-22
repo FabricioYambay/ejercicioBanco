@@ -32,6 +32,15 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaCuenta;
     JMenuItem mniBuscaCuenta;
     JMenuItem mniListaCuenta;
+    
+    //Empleado
+    JMenu mnEmpleado;
+    JMenuItem mniNuevoEmpleado;
+    JMenuItem mniModificaEmpleado;
+    JMenuItem mniEliminaEmpleado;
+    JMenuItem mniBuscarEmpleado;
+    JMenuItem mniListarEmpleado
+            ;
     JDesktopPane dkpEscritorio;
 
     public FrmMenuPrincipal() {
@@ -75,6 +84,39 @@ public class FrmMenuPrincipal extends JFrame {
         mnbPrincipal.add(mnInicio);
         mnbPrincipal.add(mnSucursal);
         
+        
+        //Empleado
+        mnEmpleado = new JMenu("Empleado");
+        mniNuevoEmpleado = new JMenuItem("Nuevo");
+        mniNuevoEmpleado.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoEmpleadoActionPerformed(e);
+            }
+        });
+        mniModificaEmpleado = new JMenuItem("Modificar");
+        mniEliminaEmpleado = new JMenuItem("Eliminar");
+        mniBuscarEmpleado = new JMenuItem("Buscar");
+        mniListarEmpleado = new JMenuItem("Listar");
+        mniListarEmpleado.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaEmpleadoActionPerdormed(e);
+            }
+        });
+        
+        mnEmpleado.add(mniNuevoEmpleado);
+        mnEmpleado.add(mniModificaEmpleado);
+        mnEmpleado.add(mniEliminaEmpleado);
+        mnEmpleado.addSeparator();
+        mnEmpleado.add(mniBuscarEmpleado);
+        mnEmpleado.add(mniListarEmpleado);
+        
+        
+        mnEmpleado.add(mnInicio);
+        mnEmpleado.add(mnSucursal);
+        mnEmpleado.add(mnEmpleado);
+        
         mnInicio.add(mniLogin);
         mnInicio.add(mniSalir);
 
@@ -89,6 +131,20 @@ public class FrmMenuPrincipal extends JFrame {
         System.exit(0);
     }
 
+    //Empleado
+     public void mniNuevoEmpleadoActionPerformed(ActionEvent e) {
+        FrmNuevoEmpleado frm = new FrmNuevoEmpleado();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+
+    public void mniListaEmpleadoActionPerdormed(ActionEvent e) {
+        FrmListaEmpleado frm = new FrmListaEmpleado();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    
+    
     public void mniNuevaSucursalActionPerformed(ActionEvent e) {
         FrmNuevaSucursal frm = new FrmNuevaSucursal();
         dkpEscritorio.add(frm);

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grupo5.rnegocio.impl;
 import ejerciciobanco.accesodatos.Conexion;
 import ejerciciobanco.accesodatos.Parametro;
 import ejerciciobanco.rnegocio.dao.*;
@@ -13,7 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CuentaCorrienteImpl implements ICuentaCredito{
+public class CuentaCreditoImpl implements ICuentaCredito{
      @Override
     
       public int insertar(CuentaCredito cuentacredito) throws Exception {

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ejerciciobanco.vistas;
 
 import java.awt.BorderLayout;
@@ -149,6 +145,14 @@ public class FrmMenuPrincipal extends JFrame {
         mnEmpleado.add(mniEliminaEmpleado);
         mnEmpleado.addSeparator();
         mnEmpleado.add(mniBuscarEmpleado);
+        mniBuscarEmpleado.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniBuscaEmpleadoActionPerdormed(e);
+            }
+
+           
+        });
         mnEmpleado.add(mniListarEmpleado);
         
         //Prestamo
@@ -216,7 +220,13 @@ public class FrmMenuPrincipal extends JFrame {
         dkpEscritorio.add(frm);
         frm.setVisible(true);
     }
-
+     
+      private void mniBuscaEmpleadoActionPerdormed(ActionEvent e) {
+                FrmBuscaEmpleado frm = new FrmBuscaEmpleado();
+                     dkpEscritorio.add(frm);
+                 frm.setVisible(true);
+            }
+     
     public void mniListaEmpleadoActionPerdormed(ActionEvent e) {
         FrmListaEmpleado frm = new FrmListaEmpleado();
         dkpEscritorio.add(frm);

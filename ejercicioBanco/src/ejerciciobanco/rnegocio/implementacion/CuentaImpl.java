@@ -23,7 +23,7 @@ import java.util.List;
         lstPar.add(new Parametro(4, cuenta.getMovimiento()));
         lstPar.add(new Parametro(5, cuenta.getCliente().getCedula()));
         lstPar.add(new Parametro(6, cuenta.getSucursal().getCodigoS()));
-        lstPar.add(new Parametro(7, cuenta.getPrestamo().getCodigopr()));
+        lstPar.add(new Parametro(7, cuenta.getPrestamo().getCodigoPr()));
         
         Conexion con = null;
         try {
@@ -48,7 +48,7 @@ import java.util.List;
         lstPar.add(new Parametro(4, cuenta.getMovimiento()));
         lstPar.add(new Parametro(5, cuenta.getCliente().getCedula()));
         lstPar.add(new Parametro(6, cuenta.getSucursal().getCodigoS()));
-        lstPar.add(new Parametro(7, cuenta.getPrestamo().getCodigopr()));
+        lstPar.add(new Parametro(7, cuenta.getPrestamo().getCodigoPr()));
         
         Conexion con = null;
         try {

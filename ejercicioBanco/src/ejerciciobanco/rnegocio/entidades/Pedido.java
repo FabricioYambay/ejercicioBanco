@@ -12,12 +12,14 @@ package ejerciciobanco.rnegocio.entidades;
 public class Pedido {
     
     private int CodigoP;
+    private String Resultado;
     private Cuenta cuenta;
    private Inspector inspector;
     private Prestamo prestamo;
 
-    public Pedido(int CodigoP, Cuenta cuenta, Inspector inspector, Prestamo prestamo) {
+    public Pedido(int CodigoP, String Resultado, Cuenta cuenta, Inspector inspector, Prestamo prestamo) {
         this.CodigoP = CodigoP;
+        this.Resultado = Resultado;
         this.cuenta = cuenta;
         this.inspector = inspector;
         this.prestamo = prestamo;
@@ -25,6 +27,10 @@ public class Pedido {
 
     public int getCodigoP() {
         return CodigoP;
+    }
+
+    public String getResultado() {
+        return Resultado;
     }
 
     public Cuenta getCuenta() {
@@ -43,6 +49,10 @@ public class Pedido {
         this.CodigoP = CodigoP;
     }
 
+    public void setResultado(String Resultado) {
+        this.Resultado = Resultado;
+    }
+
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
     }
@@ -55,6 +65,6 @@ public class Pedido {
         this.prestamo = prestamo;
     }
 
-   
+    
     
 }

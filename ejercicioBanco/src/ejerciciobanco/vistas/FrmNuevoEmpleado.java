@@ -120,7 +120,7 @@ public class FrmNuevoEmpleado extends JInternalFrame {
         try {
             lstSucursal = sucursalDao.obtener();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Error al cargar los cursos!!",
+            JOptionPane.showMessageDialog(this,"Error al cargar las Sucursales!!",
                 "Error"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }       
     }

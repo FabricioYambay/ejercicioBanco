@@ -6,6 +6,7 @@
 package ejerciciobanco.accesodatos;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Conexion {
@@ -89,5 +90,9 @@ public class Conexion {
             System.out.println("Error desconocido al desconectar:"
                     + e.getMessage());
         }
+    }
+
+    public int ejecutarComando(String sqlC, ArrayList<Parametro> lisParametros) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

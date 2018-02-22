@@ -9,46 +9,51 @@ import java.util.Date;
 
 /**
  *
- * @author Wen
+ * @author Gilda
  */
 public class Pago {
-    private int codigopa;
-    private Date fecha;
-    private double valor;
-    private Prestamo prestamo;
+    private int CodigoPa;
+    private Date Fecha;
+    private Double  Valor; 
+    private Prestamo prestamo; 
 
-    public Pago() {
-    }
-
-    public Pago(int codigopa, Date fecha, double valor, Prestamo prestamo) {
-        this.codigopa = codigopa;
-        this.fecha = fecha;
-        this.valor = valor;
+    public Pago(int CodigoPa, Date Fecha, Double Valor, Prestamo prestamo) {
+        this.CodigoPa = CodigoPa;
+        this.Fecha = Fecha;
+        this.Valor = Valor;
         this.prestamo = prestamo;
     }
 
-    public int getCodigopa() {
-        return codigopa;
+    public Pago() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setCodigopa(int codigopa) {
-        this.codigopa = codigopa;
+    public Pago(int i, Date date, double d, String pérez, Date date0, Date date1, Prestamo prestamo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getCodigoPa() {
+        return CodigoPa;
+    }
+
+    public void setCodigoPa(int CodigoPa) {
+        this.CodigoPa = CodigoPa;
     }
 
     public Date getFecha() {
-        return fecha;
+        return Fecha;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFecha(Date Fecha) {
+        this.Fecha = Fecha;
     }
 
-    public double getValor() {
-        return valor;
+    public Double getValor() {
+        return Valor;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setValor(Double Valor) {
+        this.Valor = Valor;
     }
 
     public Prestamo getPrestamo() {
@@ -58,4 +63,12 @@ public class Pago {
     public void setPrestamo(Prestamo prestamo) {
         this.prestamo = prestamo;
     }
+
+    public Object getRegistroImporte() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
+    
 }

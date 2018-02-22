@@ -1,27 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ejerciciobanco.rnegocio.entidades;
 
+/**
+ *
+ * @author Jhon
+ */
 
 public class Cliente {
+    private String Cedula;
     private String Nombre;
     private String Apellido;
-    private String telefono;
-    private String email; 
-    private int cedula;
+    private String Telefono;
+    private String Email;
+
+    public Cliente(String Cedula, String Nombre, String Apellido, String Telefono, String Email) {
+        this.Cedula = Cedula;
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+        this.Telefono = Telefono;
+        this.Email = Email;
+    }
 
     public Cliente() {
     }
 
-    public Cliente(String Nombre, String Apellido, String telefono, String email, int cedula) {
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
-        this.telefono = telefono;
-        this.email = email;
-        this.cedula = cedula;
+    public String getCedula() {
+        return Cedula;
+    }
+
+    public void setCedula(String Cedula) {
+        this.Cedula = Cedula;
     }
 
     public String getNombre() {
@@ -41,27 +49,18 @@ public class Cliente {
     }
 
     public String getTelefono() {
-        return telefono;
+        return Telefono;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefono(String Telefono) {
+        this.Telefono = Telefono;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
-
-    public int getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(int cedula) {
-        this.cedula = cedula;
-    }
-   
 }

@@ -18,6 +18,13 @@ import java.util.List;
         String sql = "insert into curso (descripcion) values (?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, cuenta.getNumerocuenta()));
+        lstPar.add(new Parametro(2, cuenta.getTipocuenta()));
+        lstPar.add(new Parametro(3, cuenta.getSaldo()));
+        lstPar.add(new Parametro(4, cuenta.getMovimiento()));
+        lstPar.add(new Parametro(5, cuenta.getCliente().getCedula()));
+        lstPar.add(new Parametro(6, cuenta.getSucursal().getCodigoS()));
+        lstPar.add(new Parametro(7, cuenta.getPrestamo().getCodigopr()));
+        
         Conexion con = null;
         try {
             con = new Conexion();
@@ -36,7 +43,13 @@ import java.util.List;
         String sql = "update  curso set descripcion=? where codigo=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, cuenta.getNumerocuenta()));
-        lstPar.add(new Parametro(2, cuenta.getSaldo()));
+        lstPar.add(new Parametro(2, cuenta.getTipocuenta()));
+        lstPar.add(new Parametro(3, cuenta.getSaldo()));
+        lstPar.add(new Parametro(4, cuenta.getMovimiento()));
+        lstPar.add(new Parametro(5, cuenta.getCliente().getCedula()));
+        lstPar.add(new Parametro(6, cuenta.getSucursal().getCodigoS()));
+        lstPar.add(new Parametro(7, cuenta.getPrestamo().getCodigopr()));
+        
         Conexion con = null;
         try {
             con = new Conexion();
@@ -70,7 +83,12 @@ import java.util.List;
             ResultSet rst = con.ejecutaQuery(sql, lstPar);            
             while(rst.next()){
                 cuenta= new Cuenta();
-                cuenta.setNumerocuenta(rst.getInt(1));
+                cuenta.setNumerocuenta(rst.getString(1));
+                cuenta.setTipocuenta(rst.getString(2));
+                cuenta.setSaldo(rst.getDouble(3));
+                cuenta.setMovimiento(rst.getDouble(4));
+               // cuenta.setCedula(rst.getInt(5));
+                
                 cuenta.setSaldo(rst.getInt(2));            
             }
         } catch (Exception e) {
@@ -94,7 +112,7 @@ import java.util.List;
             Cuenta cuenta= null;
             while(rst.next()){
                 cuenta= new Cuenta();
-                cuenta.setNumerocuenta(rst.getInt(1));
+                cuenta.setNumerocuenta(rst.getString(1));
                 cuenta.setSaldo(rst.getInt(2));
                 lista.add(cuenta);
             }

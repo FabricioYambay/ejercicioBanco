@@ -10,22 +10,26 @@ package ejerciciobanco.rnegocio.entidades;
  * @author CRISTIAN
  */
 public class Sucursal {
-    int codigoS;
-    String ciudad;
-    String direccion;
-    Cuenta cuenta;
-    Empleado empleado;
-    Prestamo prestamo;
+    private int codigoS;
+    private String ciudad;
+    private String direccion;
+    private Prestamo prestamo;
 
     public Sucursal() {
     }
 
-    public Sucursal(int codigoS, String ciudad, String direccion, Cuenta cuenta, Empleado empleado, Prestamo prestamo) {
+    public Sucursal(int codigoS, String ciudad, String direccion, Prestamo prestamo) {
         this.codigoS = codigoS;
         this.ciudad = ciudad;
         this.direccion = direccion;
-        this.cuenta = cuenta;
-        this.empleado = empleado;
+        this.prestamo = prestamo;
+    }
+
+    public Prestamo getPrestamo() {
+        return prestamo;
+    }
+
+    public void setPrestamo(Prestamo prestamo) {
         this.prestamo = prestamo;
     }
 
@@ -53,29 +57,9 @@ public class Sucursal {
         this.direccion = direccion;
     }
 
-    public Cuenta getCuenta() {
-        return cuenta;
+    @Override
+    public String toString() {
+        return ciudad;
     }
-
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
-    }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
-    }
-
-    public Prestamo getPrestamo() {
-        return prestamo;
-    }
-
-    public void setPrestamo(Prestamo prestamo) {
-        this.prestamo = prestamo;
-    }
-    
     
 }

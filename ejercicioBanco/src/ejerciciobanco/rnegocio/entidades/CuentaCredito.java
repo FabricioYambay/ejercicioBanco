@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejerciciobanco.rnegocio.entidades;
-
-
 public class CuentaCredito {
+    
     private int codigocc ;
     private double Valorsobregiro;
-
-    public CuentaCredito(int codigocc, double Valorsobregiro) {
-        this.codigocc = codigocc;
-        this.Valorsobregiro = Valorsobregiro;
-    }
+    private Cuenta cuenta;
 
     public CuentaCredito() {
+    }
+
+    public CuentaCredito(int codigocc, double Valorsobregiro, Cuenta cuenta) {
+        this.codigocc = codigocc;
+        this.Valorsobregiro = Valorsobregiro;
+        this.cuenta = cuenta;
     }
 
     public int getCodigocc() {
@@ -33,4 +33,14 @@ public class CuentaCredito {
     public void setValorsobregiro(double Valorsobregiro) {
         this.Valorsobregiro = Valorsobregiro;
     }
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+
+    
 }

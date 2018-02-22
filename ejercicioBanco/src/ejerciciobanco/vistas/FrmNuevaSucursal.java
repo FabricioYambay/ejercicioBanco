@@ -21,17 +21,18 @@ import javax.swing.*;
  */
 public class FrmNuevaSucursal extends JInternalFrame {
 
-    List<Prestamo> lstPrestamo;
-    JComboBox<Prestamo> cmbPrestamo;
     JLabel lblCodigoS;
     JLabel lblCiudad;
     JLabel lblDireccion;
-    JLabel lblPrestamo;
+    JLabel lblTelefono;
+    JLabel lblEmail;
     JLabel lblTitulo;
 
     JTextField txtCodigoS;
     JTextField txtCiudad;
     JTextField txtDireccion;
+    JTextField txtTelefono;
+    JTextField txtEmail;
 
     JButton btnLimpiar;
     JButton btnAceptar;
@@ -53,14 +54,15 @@ public class FrmNuevaSucursal extends JInternalFrame {
         lblCodigoS = new JLabel("Código:");
         lblCiudad = new JLabel("Ciudad:");
         lblDireccion = new JLabel("Direccion:");
-        lblPrestamo = new JLabel("Prestamo:");
-        
+        lblTelefono = new JLabel("Prestamo:");
+        lblEmail = new JLabel("Email:");
+
         txtCodigoS = new JTextField(2);
         txtCiudad = new JTextField(2);
         txtDireccion = new JTextField(2);
-        cargarPrestamo();
-        cmbPrestamo = new JComboBox(lstPrestamo.toArray());
-    
+        txtTelefono = new JTextField(2);
+        txtEmail = new JTextField(2);
+
         btnLimpiar = new JButton("Limpiar");
         btnAceptar = new JButton("Aceptar");
 
@@ -70,9 +72,10 @@ public class FrmNuevaSucursal extends JInternalFrame {
         pnlCentral.add(txtCiudad);
         pnlCentral.add(lblDireccion);
         pnlCentral.add(txtDireccion);
-        pnlCentral.add(lblPrestamo);
-        pnlCentral.add(cmbPrestamo);
-        
+        pnlCentral.add(lblTelefono);
+        pnlCentral.add(txtTelefono);
+        pnlCentral.add(lblEmail);
+        pnlCentral.add(txtEmail);
         btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -91,41 +94,33 @@ public class FrmNuevaSucursal extends JInternalFrame {
         this.add(pnlCentral, BorderLayout.CENTER);
         this.add(pnlPie, BorderLayout.SOUTH);
     }
+
     public static void main(String[] args) {
-        FrmNuevaSucursal frmMenu= new FrmNuevaSucursal();
+        FrmNuevaSucursal frmMenu = new FrmNuevaSucursal();
         frmMenu.setVisible(true);
-    } 
- 
-    public void cargarPrestamo(){
-        IPrestamo prestamoDao = new PrestamoImpl();
-        try {
-            lstPrestamo = prestamoDao.obtener();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Error al cargar las Prestamo!!",
-                "Error"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
-        }
-        
     }
-    public void btnAceptarActionListener(ActionEvent e){
+
+    public void btnAceptarActionListener(ActionEvent e) {
         Sucursal sucursal = new Sucursal();
         ISucursal sucursalDao = new SucursalImpl();
         sucursal.setCodigoS(Integer.parseInt(txtCodigoS.getText()));
         sucursal.setCiudad(txtCiudad.getText());
         sucursal.setDireccion(txtDireccion.getText());
-        sucursal.setPrestamo((Prestamo) cmbPrestamo.getSelectedItem());
-        
+        sucursal.setDireccion(txtTelefono.getText());
+        sucursal.setDireccion(txtEmail.getText());
+
         try {
             if (sucursalDao.insertar(sucursal) > 0) {
                 JOptionPane.showMessageDialog(this, "Registrado correctamente!!",
                         "Transacción correcta", JOptionPane.INFORMATION_MESSAGE);
             } else {
-            JOptionPane.showMessageDialog(this,"Error desconocido: ",
-                    "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error desconocido: ",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
-            } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,"Error desconocido: "+ex.getMessage(),
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error desconocido: " + ex.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
-        }  
-}
+        }
+    }
 
 }

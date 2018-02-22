@@ -13,24 +13,33 @@ public class Sucursal {
     private int codigoS;
     private String ciudad;
     private String direccion;
-    private Prestamo prestamo;
-
+    private String telefono;
+    private String email;
     public Sucursal() {
     }
 
-    public Sucursal(int codigoS, String ciudad, String direccion, Prestamo prestamo) {
+    public Sucursal(int codigoS, String ciudad, String direccion, String telefono, String email) {
         this.codigoS = codigoS;
         this.ciudad = ciudad;
         this.direccion = direccion;
-        this.prestamo = prestamo;
+        this.telefono = telefono;
+        this.email = email;
+    }
+    
+    public String getTelefono() {
+        return telefono;
     }
 
-    public Prestamo getPrestamo() {
-        return prestamo;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public void setPrestamo(Prestamo prestamo) {
-        this.prestamo = prestamo;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getCodigoS() {
@@ -60,6 +69,5 @@ public class Sucursal {
     @Override
     public String toString() {
         return ciudad;
-    }
-    
+    }    
 }

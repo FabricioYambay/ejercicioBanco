@@ -41,7 +41,8 @@ public class FrmListaSucursal extends JInternalFrame {
         modelo.addColumn("Codigo");
         modelo.addColumn("Ciudad");
         modelo.addColumn("Direccion");
-        modelo.addColumn("Prestamo");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Email");
                 
         List<Sucursal> lista = new ArrayList<>();
         try {
@@ -53,7 +54,7 @@ public class FrmListaSucursal extends JInternalFrame {
         }
         for (Sucursal est : lista) {
             modelo.addRow(new Object[]{est.getCodigoS(), est.getCiudad(),
-                est.getDireccion(),est.getPrestamo().toString()});
+                est.getDireccion(),est.getTelefono(),est.getEmail().toString()});
         }
         tabla.setModel(modelo);
     }

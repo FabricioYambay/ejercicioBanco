@@ -26,12 +26,13 @@ public class SucursalImpl implements ISucursal {
     public int insertar(Sucursal sucursal) throws Exception {
         int numFilasAfectadas = 0;
         String sql = "insert into Sucursal  values "
-                + "(?,?,?,?)";
+                + "(?,?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, sucursal.getCodigoS()));
         lstPar.add(new Parametro(2, sucursal.getCiudad()));
         lstPar.add(new Parametro(3, sucursal.getDireccion()));
-        lstPar.add(new Parametro(4, sucursal.getPrestamo().getCodigoPr()));
+        lstPar.add(new Parametro(4, sucursal.getTelefono()));
+        lstPar.add(new Parametro(5, sucursal.getEmail()));
 
         Conexion con = null;
         try {
@@ -52,13 +53,14 @@ public class SucursalImpl implements ISucursal {
     public int modificar(Sucursal sucursal) throws Exception {
         int numFilasAfectadas = 0;
         String sql = "UPDATE sucursal"
-                + "   SET codigoS=?, ciudad=?, direccion=?,codigopr=? "
+                + "   SET codigoS=?, ciudad=?, direccion=?,telefono=?,email=? "
                 + " where codigoS=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, sucursal.getCodigoS()));
         lstPar.add(new Parametro(2, sucursal.getCiudad()));
         lstPar.add(new Parametro(3, sucursal.getDireccion()));
-        lstPar.add(new Parametro(5, sucursal.getPrestamo().getCodigoPr()));
+        lstPar.add(new Parametro(4, sucursal.getTelefono()));
+        lstPar.add(new Parametro(5, sucursal.getEmail()));
 
         Conexion con = null;
         try {
@@ -99,8 +101,6 @@ public class SucursalImpl implements ISucursal {
     @Override
     public Sucursal obtener(int codigoS) throws Exception {
         Sucursal sucursal = null;
-        Prestamo prestamo = null;
-        IPrestamo prestamoDao = new PrestamoImpl();
         String sql = "SELECT * FROM sucursal where codigoS=?;";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, codigoS));
@@ -111,13 +111,12 @@ public class SucursalImpl implements ISucursal {
             ResultSet rst = con.ejecutaQuery(sql, lstPar);
 
             while (rst.next()) {
-                prestamo = new Prestamo();
-                prestamo = prestamoDao.obtener(rst.getInt(4));
                 sucursal = new Sucursal();
                 sucursal.setCodigoS(rst.getInt(1));
                 sucursal.setCiudad(rst.getString(2));
                 sucursal.setDireccion(rst.getString(3));
-                sucursal.setPrestamo(prestamo);
+                sucursal.setTelefono(rst.getString(4));
+                sucursal.setEmail(rst.getString(5));
 
             }
         } catch (Exception e) {
@@ -133,9 +132,7 @@ public class SucursalImpl implements ISucursal {
     @Override
     public List<Sucursal> obtener() throws Exception {
         List<Sucursal> lista = new ArrayList<>();
-        Prestamo prestamo = null;
-        IPrestamo prestamoDao = new PrestamoImpl();
-        
+
         String sql = "SELECT * FROM sucursal ";
         Conexion con = null;
         try {
@@ -144,13 +141,12 @@ public class SucursalImpl implements ISucursal {
             ResultSet rst = con.ejecutaQuery(sql, null);
             Sucursal sucursal = null;
             while (rst.next()) {
-                prestamo = new Prestamo();
-                prestamo = prestamoDao.obtener(rst.getInt(4));
                 sucursal = new Sucursal();
                 sucursal.setCodigoS(rst.getInt(1));
                 sucursal.setCiudad(rst.getString(2));
                 sucursal.setDireccion(rst.getString(3));
-                sucursal.setPrestamo(prestamo);
+                sucursal.setTelefono(rst.getString(4));
+                sucursal.setEmail(rst.getString(5));
 
                 lista.add(sucursal);
             }

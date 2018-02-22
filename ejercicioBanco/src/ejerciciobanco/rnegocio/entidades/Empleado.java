@@ -11,19 +11,19 @@ public class Empleado {
     private String Direccion;
     private String Telefono;
     private String Email;
-    private String CodigoS;
+    private Sucursal sucursal;
 
     public Empleado() {
     }
 
-    public Empleado(int CodigoE, String Nombre, String Apellido, String Direccion, String Telefono, String Email, String CodigoS) {
+    public Empleado(int CodigoE, String Nombre, String Apellido, String Direccion, String Telefono, String Email, Sucursal sucursal) {
         this.CodigoE = CodigoE;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Direccion = Direccion;
         this.Telefono = Telefono;
         this.Email = Email;
-        this.CodigoS = CodigoS;
+        this.sucursal = sucursal;
     }
 
     public int getCodigoE() {
@@ -74,14 +74,15 @@ public class Empleado {
         this.Email = Email;
     }
 
-    public String getCodigoS() {
-        return CodigoS;
+    public Sucursal getSucursal() {
+        return sucursal;
     }
 
-    public void setCodigoS(String CodigoS) {
-        this.CodigoS = CodigoS;
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
-    
+
+  
     @Override
     public String toString(){
         return Nombre;

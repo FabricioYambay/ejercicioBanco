@@ -39,8 +39,16 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniModificaEmpleado;
     JMenuItem mniEliminaEmpleado;
     JMenuItem mniBuscarEmpleado;
-    JMenuItem mniListarEmpleado
-            ;
+    JMenuItem mniListarEmpleado;
+    
+    //Prestamo
+    JMenu mnPrestamo;
+    JMenuItem mniNuevoPrestamo;
+    JMenuItem mniModificaPrestamo;
+    JMenuItem mniEliminaPrestamo;
+    JMenuItem mniBuscarPrestamo;
+    JMenuItem mniListarPrestamo;
+ 
     JDesktopPane dkpEscritorio;
 
     public FrmMenuPrincipal() {
@@ -112,6 +120,33 @@ public class FrmMenuPrincipal extends JFrame {
         mnEmpleado.add(mniBuscarEmpleado);
         mnEmpleado.add(mniListarEmpleado);
         
+        //Prestamo
+        mnPrestamo = new JMenu("Prestamo");
+        mniNuevoPrestamo = new JMenuItem("Nuevo");
+        mniNuevoPrestamo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoPrestamoActionPerformed(e);
+            }
+        });
+        mniModificaPrestamo = new JMenuItem("Modificar");
+        mniEliminaPrestamo = new JMenuItem("Eliminar");
+        mniBuscarPrestamo = new JMenuItem("Buscar");
+        mniListarPrestamo = new JMenuItem("Listar");
+        mniListarPrestamo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListarPrestamoActionPerdormed(e);
+            }
+        });
+        
+        mnPrestamo.add(mniNuevoPrestamo);
+        mnPrestamo.add(mniModificaPrestamo);
+        mnPrestamo.add(mniEliminaPrestamo);
+        mnPrestamo.addSeparator();
+        mnPrestamo.add(mniBuscarPrestamo);
+        mnPrestamo.add(mniListarPrestamo);
+        
         
         mnEmpleado.add(mnInicio);
         mnEmpleado.add(mnSucursal);
@@ -131,6 +166,19 @@ public class FrmMenuPrincipal extends JFrame {
         System.exit(0);
     }
 
+    //Prestamo
+     public void mniNuevoPrestamoActionPerformed(ActionEvent e) {
+        FrmNuevoPrestamo frm = new FrmNuevoPrestamo();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+
+    public void mniListarPrestamoActionPerdormed(ActionEvent e) {
+        FrmListaPrestamo frm = new FrmListaPrestamo();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    
     //Empleado
      public void mniNuevoEmpleadoActionPerformed(ActionEvent e) {
         FrmNuevoEmpleado frm = new FrmNuevoEmpleado();

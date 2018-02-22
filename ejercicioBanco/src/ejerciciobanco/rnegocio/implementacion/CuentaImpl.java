@@ -1,4 +1,5 @@
 
+
 package ejerciciobanco.rnegocio.implementacion;
 
 import ejerciciobanco.accesodatos.*;
@@ -15,7 +16,7 @@ import java.util.List;
 @Override
     public int insertar(Cuenta cuenta) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "insert into curso (descripcion) values (?)";
+        String sql =  "insert into cuenta  values " + "(?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, cuenta.getNumerocuenta()));
         lstPar.add(new Parametro(2, cuenta.getTipocuenta()));
@@ -23,7 +24,7 @@ import java.util.List;
         lstPar.add(new Parametro(4, cuenta.getMovimiento()));
         lstPar.add(new Parametro(5, cuenta.getCliente().getCedula()));
         lstPar.add(new Parametro(6, cuenta.getSucursal().getCodigoS()));
-        lstPar.add(new Parametro(7, cuenta.getPrestamo().getCodigopr()));
+       
         
         Conexion con = null;
         try {
@@ -40,7 +41,7 @@ import java.util.List;
 @Override
     public int modificar(Cuenta cuenta) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "update  curso set descripcion=? where codigo=?";
+        String sql = "update  Cuenta set Numerocuenta=?,TipoCuenta=?,Saldo=?,Movimiento=?,CodigoC=?,CodigoS=? where Numerocuenta=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, cuenta.getNumerocuenta()));
         lstPar.add(new Parametro(2, cuenta.getTipocuenta()));
@@ -48,8 +49,7 @@ import java.util.List;
         lstPar.add(new Parametro(4, cuenta.getMovimiento()));
         lstPar.add(new Parametro(5, cuenta.getCliente().getCedula()));
         lstPar.add(new Parametro(6, cuenta.getSucursal().getCodigoS()));
-        lstPar.add(new Parametro(7, cuenta.getPrestamo().getCodigopr()));
-        
+      
         Conexion con = null;
         try {
             con = new Conexion();
@@ -73,23 +73,29 @@ import java.util.List;
     @Override
     public Cuenta obtener(int numerocuenta) throws Exception {
         Cuenta cuenta = null;
-         String sql = "select codigo, descripcion from curso where codigo=?"; 
+         String sql = "select * from Cuenta where Numerocuenta=?"; 
           List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, numerocuenta));
         Conexion con = null;
         try {
             con = new Conexion();
             con.conectar();
+            Cliente cliente=null;     
             ResultSet rst = con.ejecutaQuery(sql, lstPar);            
             while(rst.next()){
-                cuenta= new Cuenta();
+                
+               
+                cuenta.setCliente(cliente);
                 cuenta.setNumerocuenta(rst.getString(1));
                 cuenta.setTipocuenta(rst.getString(2));
                 cuenta.setSaldo(rst.getDouble(3));
                 cuenta.setMovimiento(rst.getDouble(4));
-               // cuenta.setCedula(rst.getInt(5));
+                 //ICliente clientedao= new ClienteImpl();
+                //Cliente cliente=clientedao.obtener(rst.getInt(5));
+               ISucursal sucursalDao= new SucursalImpl();
+               Sucursal sucursal= sucursalDao.obtener(rst.getInt(6));
                 
-                cuenta.setSaldo(rst.getInt(2));            
+                         
             }
         } catch (Exception e) {
             throw e;
@@ -103,17 +109,25 @@ import java.util.List;
     @Override
     public List<Cuenta> obtener() throws Exception {
         List<Cuenta> lista = new ArrayList<>();
-         String sql = "select codigo, descripcion from curso";        
+         String sql ="SELECT *   FROM cuenta ";        
         Conexion con = null;
         try {
             con = new Conexion();
             con.conectar();
             ResultSet rst = con.ejecutaQuery(sql, null);
             Cuenta cuenta= null;
+            Cliente cliente=null;  
             while(rst.next()){
                 cuenta= new Cuenta();
+                cuenta.setCliente(cliente);
                 cuenta.setNumerocuenta(rst.getString(1));
-                cuenta.setSaldo(rst.getInt(2));
+                cuenta.setTipocuenta(rst.getString(2));
+                cuenta.setSaldo(rst.getDouble(3));
+                cuenta.setMovimiento(rst.getDouble(4));
+                 //ICliente clientedao= new ClienteImpl();
+                //Cliente cliente=clientedao.obtener(rst.getInt(5));
+               ISucursal sucursalDao= new SucursalImpl();
+               Sucursal sucursal= sucursalDao.obtener(rst.getInt(6));
                 lista.add(cuenta);
             }
         } catch (Exception e) {

@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
  *
  * @author Gilda
  */
+//
 public class InspectorTest {
      public InspectorTest() {
     }

@@ -108,8 +108,8 @@ public class FrmNuevoPrestamo extends JInternalFrame {
         Prestamo prestamo = new Prestamo();
         
         prestamo.setRegistroImporte(txtRegistroImporte.getText());
-        prestamo.setPagos(txtPagos.getText());
-        prestamo.setAhorros(txtAhorros.getText());
+        prestamo.setCodigoPr(Integer.parseInt(txtPagos.getText())); 
+        prestamo.setCodigoPr(Integer.parseInt(txtAhorros.getText())); 
         prestamo.setCodigoPr(Integer.parseInt(txtCodigo.getText()));   
         
         try {

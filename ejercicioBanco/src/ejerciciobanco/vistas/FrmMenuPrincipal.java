@@ -246,11 +246,12 @@ public class FrmMenuPrincipal extends JFrame {
 
         mnbPrincipal.add(mnInicio);
         mnbPrincipal.add(mnCliente);
-        mnbPrincipal.add(mnCuenta);
+//        mnbPrincipal.add(mnCuenta);
         mnbPrincipal.add(mnPedido);
         mnbPrincipal.add(mnPago);
         mnbPrincipal.add(mnSucursal);
         mnbPrincipal.add(mnEmpleado);
+        mnbPrincipal.add(mnPrestamo);
         mnbPrincipal.add(mnInspector);
         this.setLayout(new BorderLayout());
         this.add(mnbPrincipal, BorderLayout.NORTH);
@@ -272,6 +273,11 @@ public class FrmMenuPrincipal extends JFrame {
 
     public void mniListarPrestamoActionPerdormed(ActionEvent e) {
         FrmListaPrestamo frm = new FrmListaPrestamo();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+     public void mniBuscaPrestamoActionPerdormed(ActionEvent e) {
+        FrmBuscarPrestamo frm = new FrmBuscarPrestamo();
         dkpEscritorio.add(frm);
         frm.setVisible(true);
     }

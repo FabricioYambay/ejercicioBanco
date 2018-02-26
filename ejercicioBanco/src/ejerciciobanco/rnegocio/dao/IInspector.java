@@ -17,6 +17,7 @@ public interface IInspector {
     public int modificar (Inspector inspector) throws Exception; 
     public int eliminar (Inspector inspector) throws Exception;
     public Inspector obtener (int CodigoI) throws Exception;
+    public Inspector obtener_x_nombre(String Nombre) throws Exception;
     public ArrayList<Inspector> obtener() throws Exception; 
     
 }

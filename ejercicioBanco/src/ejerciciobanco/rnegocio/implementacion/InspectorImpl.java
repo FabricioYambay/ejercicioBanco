@@ -117,6 +117,36 @@ public class InspectorImpl implements IInspector {
     }
 
     @Override
+    public Inspector obtener_x_nombre(String nombre) throws Exception {
+        Inspector inspector = null;
+        String sql = "SELECT * FROM inspector where Nombre =?";
+        List<Parametro> lstPar = new ArrayList<>();
+        lstPar.add(new Parametro(1, nombre));
+        Conexion con = null;
+        try {
+            con = new Conexion();
+            con.conectar();
+            ResultSet rst = con.ejecutaQuery(sql, lstPar);
+            while (rst.next()) {
+                inspector = new Inspector();
+                inspector.setCodigoI(rst.getInt(1));
+                inspector.setNombre(rst.getString(2));
+                inspector.setApellido(rst.getString(3));
+                inspector.setDireccion(rst.getString(4));
+                inspector.setTitulo(rst.getString(5));
+
+
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if(con!=null)
+            con.desconectar();
+        }
+        return inspector;
+    }
+
+    @Override
     public ArrayList<Inspector> obtener() throws Exception {
          List<Inspector> lista = new ArrayList<>();
          String sql = "SELECT *   FROM inspector ";        

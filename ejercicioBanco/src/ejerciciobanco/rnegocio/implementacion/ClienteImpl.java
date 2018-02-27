@@ -83,7 +83,7 @@ public class ClienteImpl implements ICliente{
     @Override
     public Cliente obtener(String cedula) throws Exception {
         Cliente cliente = null;
-        String sql = "SELECT Cedula, Nombre, Apellido, Telefono, Email FROM Cliente where Cedula = ?";
+        String sql = "SELECT  Nombre, Apellido, Telefono, Email, Cedula FROM Cliente where Cedula = ?";
         ArrayList<Parametro> listadoParametros = new ArrayList<>();
         listadoParametros.add(new Parametro(1, cedula));
         Conexion conec = null;

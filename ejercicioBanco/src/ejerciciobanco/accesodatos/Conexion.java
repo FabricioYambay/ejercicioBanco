@@ -11,10 +11,10 @@ import java.util.List;
 
 public class Conexion {
 
-    final String DRIVER = "org.postgresql.Driver";
-    final String URL = "jdbc:postgresql://localhost:5433/academico";
-    final String USER = "usr_academico";
-    final String PASS = "123456";
+    final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    final String URL = "jdbc:sqlserver://192.168.100.18:1433;databaseName=Banco";
+    final String USER = "banco";
+    final String PASS = "banco";
     Connection con = null;
 
     public void conectar() {

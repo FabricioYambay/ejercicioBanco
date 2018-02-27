@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.*;
 
-public class FrmModificarCliente extends JFrame {
+public class FrmModificarCliente extends JInternalFrame{
 
     JLabel lblTitulo;
     JLabel lblCedula;
@@ -34,7 +34,7 @@ public class FrmModificarCliente extends JFrame {
     public FrmModificarCliente() {
         this.setSize(420, 680);
         this.setLayout(new BorderLayout());
-        lblTitulo = new JLabel("Nuevo Cliente");
+        lblTitulo = new JLabel("Modificar Cliente");
         this.add(lblTitulo, BorderLayout.NORTH);
         lblCedula = new JLabel("Cedula: ");
         lblNombre = new JLabel("Nombre: ");
@@ -81,7 +81,7 @@ public class FrmModificarCliente extends JFrame {
                 }
             }
         });
-         btnBuscar = new JButton("Buscar");
+         btnBuscar = new JButton("BUSCAR");
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,10 +112,10 @@ public class FrmModificarCliente extends JFrame {
             cliente.setTelefono(txTelefono.getText());
             cliente.setEmail(txEmail.getText());
             if (clienteDao.modificar(cliente) > 0) {
-                JOptionPane.showMessageDialog(this, "Cliente Ingresado Correctamente!!",
+                JOptionPane.showMessageDialog(this, "Cliente Modificado Con Exito",
                         "Transacción", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Error de Insercion",
+                JOptionPane.showMessageDialog(this, "Error de Modificacion",
                         "Transacción", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {

@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.*;
 
-public class FrmEliminarCliente extends  JFrame{
+public class FrmEliminarCliente extends  JInternalFrame{
     
        JLabel lblTitulo;
     JLabel lblCedula;
@@ -36,7 +36,7 @@ public class FrmEliminarCliente extends  JFrame{
     public FrmEliminarCliente() {
         this.setSize(420, 680);
         this.setLayout(new BorderLayout());
-        lblTitulo = new JLabel("Nuevo Cliente");
+        lblTitulo = new JLabel("Elimibar Cliente");
         this.add(lblTitulo, BorderLayout.NORTH);
         lblCedula = new JLabel("Cedula: ");
         lblNombre = new JLabel("Nombre: ");
@@ -83,7 +83,7 @@ public class FrmEliminarCliente extends  JFrame{
                 }
             }
         });
-         btnBuscar = new JButton("Buscar");
+         btnBuscar = new JButton("BUSCAR");
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,7 +101,7 @@ public class FrmEliminarCliente extends  JFrame{
         pnlBotones.add(btnEliminar);
         pnlBotones.add(btnLimpiar);
         this.add(pnlBotones, BorderLayout.SOUTH);
-        //  this.setClosable(true);
+        this.setClosable(true);
     }
 
     public void btnEliminarActionListener(ActionEvent e) {
@@ -115,7 +115,7 @@ public class FrmEliminarCliente extends  JFrame{
             cliente.setEmail(txEmail.getText());
             
             if (clienteDao.eliminar(cliente) > 0) {
-                JOptionPane.showMessageDialog(this, "Cliente Ingresado Correctamente!!",
+                JOptionPane.showMessageDialog(this, "Cliente Eliminado Correctamente",
                         "Transacción", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Error de Eliminacion",

@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.*;
 
-public class FrmBuscarCliente extends JFrame {
+public class FrmBuscarCliente extends JInternalFrame {
 
     JLabel lblTitulo;
     JLabel lblCedula;
@@ -35,7 +35,7 @@ public class FrmBuscarCliente extends JFrame {
 
         this.setSize(420, 680);
         this.setLayout(new BorderLayout());
-        lblTitulo = new JLabel("Nuevo Cliente");
+        lblTitulo = new JLabel("Buscar Cliente");
         this.add(lblTitulo, BorderLayout.NORTH);
         lblCedula = new JLabel("Cedula: ");
         lblNombre = new JLabel("Nombre: ");
@@ -59,7 +59,7 @@ public class FrmBuscarCliente extends JFrame {
         pnlInterno.add(lblEmail);
         pnlInterno.add(txEmail);
         this.add(pnlInterno, BorderLayout.CENTER);
-        btnBuscar = new JButton("Insertar");
+        btnBuscar = new JButton("Buscar");
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,7 +85,7 @@ public class FrmBuscarCliente extends JFrame {
         pnlBotones.add(btnBuscar);
         pnlBotones.add(btnLimpiar);
         this.add(pnlBotones, BorderLayout.SOUTH);
-        //  this.setClosable(true);
+        this.setClosable(true);
     }
 
     public void btnBuscarActionListener(ActionEvent e) {
@@ -107,8 +107,7 @@ public class FrmBuscarCliente extends JFrame {
         }
     }
 
-//////////////////////////////////////////
-    ///////////////////////
+
     public void btnLimpiarActionListener(ActionEvent e) {
         txCedula.setText("");
         txNombre.setText("");

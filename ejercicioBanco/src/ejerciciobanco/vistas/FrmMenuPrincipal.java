@@ -200,6 +200,12 @@ public class FrmMenuPrincipal extends JFrame {
         mniModificaPrestamo = new JMenuItem("Modificar");
         mniEliminaPrestamo = new JMenuItem("Eliminar");
         mniBuscarPrestamo = new JMenuItem("Buscar");
+        mniBuscarPrestamo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               mniBuscarPrestamoActionPerformed(e);
+            }
+        });
         mniListarPrestamo = new JMenuItem("Listar");
         mniListarPrestamo.addActionListener(new ActionListener() {
             @Override
@@ -284,18 +290,17 @@ public class FrmMenuPrincipal extends JFrame {
         dkpEscritorio.add(frm);
         frm.setVisible(true);
     }
-    
+    public void mniBuscarPrestamoActionPerformed(ActionEvent e) {
+        FrmBuscaPrestamo frm = new FrmBuscaPrestamo();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
     public void mniListarPrestamoActionPerdormed(ActionEvent e) {
         FrmListaPrestamo frm = new FrmListaPrestamo();
         dkpEscritorio.add(frm);
         frm.setVisible(true);
     }
 
-    public void mniBuscaPrestamoActionPerdormed(ActionEvent e) {
-//        FrmBuscarPrestamo frm = new FrmBuscarPrestamo();
-//        dkpEscritorio.add(frm);
-//        frm.setVisible(true);
-    }
 
     //Empleado
     public void mniNuevoEmpleadoActionPerformed(ActionEvent e) {

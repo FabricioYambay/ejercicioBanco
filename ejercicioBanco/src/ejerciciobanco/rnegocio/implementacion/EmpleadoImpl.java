@@ -16,8 +16,8 @@ public class EmpleadoImpl implements IEmpleado{
      @Override
     public int insertar(Empleado empleado) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "insert into Empleado  values "
-                +"(?,?,?,?,?)";
+        String sql = "insert into empleado  values "
+                +"(?,?,?,?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, empleado.getCodigoE()));
         lstPar.add(new Parametro(2, empleado.getNombre()));
@@ -44,10 +44,10 @@ public class EmpleadoImpl implements IEmpleado{
     @Override
     public int modificar(Empleado empleado) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "UPDATE Empleado"
-                + "   SET CodigoE=?, Nombre=?, Apellido=?, Direccion=?, Telefono=?, "
-                + "Email=?, CodigoS=?"
-                + " where CodigoE=?";
+        String sql = "UPDATE empleado"
+                + "   SET codigoE=?, nombre=?,apellido=?, direccion=?, "
+                + "telefono=?, email=?, codigoS=?"
+                + " where codigoS=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, empleado.getCodigoE()));
         lstPar.add(new Parametro(2, empleado.getNombre()));
@@ -55,7 +55,7 @@ public class EmpleadoImpl implements IEmpleado{
         lstPar.add(new Parametro(4, empleado.getDireccion()));
         lstPar.add(new Parametro(5, empleado.getTelefono()));
         lstPar.add(new Parametro(6, empleado.getEmail()));
-        lstPar.add(new Parametro(7,empleado.getSucursal().getCodigoS()));
+        lstPar.add(new Parametro(7, empleado.getSucursal().getCodigoS()));
         Conexion con = null;
         try {
             con = new Conexion();
@@ -74,7 +74,7 @@ public class EmpleadoImpl implements IEmpleado{
     @Override
     public int eliminar(Empleado empleado) throws Exception {
         int numFilasAfectadas = 0;
-         String sql = "DELETE FROM Empleado  where CodigoE=?";
+         String sql = "DELETE FROM empleado  where codigoE=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, empleado.getCodigoE()));       
         Conexion con = null;
@@ -93,12 +93,12 @@ public class EmpleadoImpl implements IEmpleado{
     }
 
     @Override
-    public Empleado obtener(int CodigoE) throws Exception {
+    public Empleado obtener(int codigoE) throws Exception {
         Empleado empleado = null;
-        String sql = "SELECT CodigoE, Nombre, Apellido, Direccion, Telefono, "
-                + "Email, CodigoS FROM Empleado where CodigoE=?";
+        String sql = "SELECT codigoE, nombres, apellido, direccion, "
+                + "telefono,  email, codigoS   FROM empleado where codigoE=?";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, CodigoE));
+        lstPar.add(new Parametro(1, codigoE));
         Conexion con = null;
         try {
             con = new Conexion();
@@ -128,8 +128,8 @@ public class EmpleadoImpl implements IEmpleado{
     @Override
     public List<Empleado> obtener() throws Exception {
         List<Empleado> lista = new ArrayList<>();
-         String sql = "SELECT CodigoE, Nombre, Apellido, Direccion, Telefono, "
-                + "Email, CodigoS FROM Empleado  ";        
+         String sql = "SELECT codigoE, nombres, apellido,direccion,"
+                + "telefono, email, codigoS  FROM empleado ";        
         Conexion con = null;
         try {
             con = new Conexion();
@@ -145,7 +145,7 @@ public class EmpleadoImpl implements IEmpleado{
                 empleado.setTelefono(rst.getString(5));
                 empleado.setEmail(rst.getString(6));
                 ISucursal sucursaldao = new SucursalImpl();
-                Sucursal sucursal = sucursaldao.obtener(rst.getInt(7));
+                Sucursal sucursal = sucursaldao.obtener(rst.getInt(10));
                 empleado.setSucursal(sucursal);
                 lista.add(empleado);
             }
@@ -156,5 +156,6 @@ public class EmpleadoImpl implements IEmpleado{
             con.desconectar();
         }
         return lista;
+    
     }
 }

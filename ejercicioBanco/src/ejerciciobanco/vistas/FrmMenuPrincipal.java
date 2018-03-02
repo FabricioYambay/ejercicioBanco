@@ -220,19 +220,52 @@ public class FrmMenuPrincipal extends JFrame {
         mnPrestamo.addSeparator();
         mnPrestamo.add(mniBuscarPrestamo);
         mnPrestamo.add(mniListarPrestamo);
-        
+        // Peidio
         mnPedido = new JMenu("Pedido");
         mniNuevoPedido = new JMenuItem("Nuevo");
+         mniNuevoPedido.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoPedidoActionPerformed(e);
+            }
+        });
+        
         mniModificaPedido = new JMenuItem("Modificar");
         mniEliminaPedido = new JMenuItem("Eliminar");
         mniBuscarPedido = new JMenuItem("Buscar");
         mniListarPedido = new JMenuItem("Listar");
+        mniNuevoPedido.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniNuevoPedidoActionPerformed(e);
+            }
+        });
+        mniModificaPedido = new JMenuItem("Modificar");
+        mniEliminaPedido = new JMenuItem("Eliminar");
+        mniBuscarPedido = new JMenuItem("Buscar");
+      
+        mniListarPrestamo = new JMenuItem("Listar");
+        mniListarPedido.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mniListaPedidoActionPerdormed(e);
+            }
+        });
+        
         mnPedido.add(mniNuevoPedido);
         mnPedido.add(mniModificaPedido);
         mnPedido.add(mniEliminaPedido);
         mnPedido.addSeparator();
         mnPedido.add(mniBuscarPedido);
         mnPedido.add(mniListarPedido);
+        
+        
+        
+        
+        
+        
+        
+        
         
         mnPago = new JMenu("Pago");
         mniNuevoPago = new JMenuItem("Nuevo");
@@ -283,7 +316,21 @@ public class FrmMenuPrincipal extends JFrame {
     public void mniSalirActionPerformed(ActionEvent e) {
         System.exit(0);
     }
-
+// pedido
+    public void mniNuevoPedidoActionPerformed(ActionEvent e) {
+        FrmNuevoPedido frm = new FrmNuevoPedido();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    
+    
+    public void mniListaPedidoActionPerdormed(ActionEvent e) {
+        FrmListaPedido frm = new FrmListaPedido();
+        dkpEscritorio.add(frm);
+        frm.setVisible(true);
+    }
+    
+    
     //Prestamo
     public void mniNuevoPrestamoActionPerformed(ActionEvent e) {
         FrmNuevoPrestamo frm = new FrmNuevoPrestamo();

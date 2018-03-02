@@ -21,6 +21,7 @@ public class FrmBuscaEmpleado extends javax.swing.JInternalFrame {
      */
     public FrmBuscaEmpleado() {
         initComponents();
+        this.setClosable(true);
     }
 
     /**

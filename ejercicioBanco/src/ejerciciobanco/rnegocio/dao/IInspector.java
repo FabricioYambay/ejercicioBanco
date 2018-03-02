@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Gilda
  */
 public interface IInspector {
-         public int insertar (Inspector inspector) throws Exception;
+    public int insertar (Inspector inspector) throws Exception;
     public int modificar (Inspector inspector) throws Exception; 
     public int eliminar (Inspector inspector) throws Exception;
     public Inspector obtener (int CodigoI) throws Exception;

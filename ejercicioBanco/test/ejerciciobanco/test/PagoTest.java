@@ -2,8 +2,9 @@
 package ejerciciobanco.test;
 
 import ejerciciobanco.rnegocio.dao.IPago;
-import ejerciciobanco.rnegocio.entidades.Pago;
-import ejerciciobanco.rnegocio.entidades.Prestamo;
+import ejerciciobanco.rnegocio.Implementacion.*;
+import ejerciciobanco.rnegocio.dao.*;
+import ejerciciobanco.rnegocio.entidades.*;
 import ejerciciobanco.rnegocio.implementacion.PagoImpl;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,48 +22,37 @@ public class PagoTest {
     }
 
     @Test
-    public void pruebageneral() {
-        int filasAfectadas = 0;
+    public void pruebageneral() throws Exception{
+        //              INSERTAR
+        int filasAfectadas =0;
         IPago pagoDao = new PagoImpl();
-        Prestamo prestamo = new Prestamo( "RegistroImporte", "Pagos", "Ahorros", 1);
-        Pago pago = new Pago( 1, new Date(), 8.8,  prestamo);
-        try {
+         IPrestamo  prestamoDao = new  PrestamoImpl();
+        Prestamo prestamo = prestamoDao.obtener(1);
+        Pago pago  = new Pago(1, new Date(), 20.15 ,prestamo );
+      
+        try{
             filasAfectadas = pagoDao.insertar(pago);
-        } catch (Exception e) {
-            System.out.println("Error:" + e.getMessage());
+            System.out.println("Pago ingresado!!!\n");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
-        assertEquals((filasAfectadas > 0), true);
-
-        pago = null;
-        try {
-            pago = pagoDao.obtener(10003);
-        } catch (Exception e) {
-            System.out.println("Error:" + e.getMessage());
-        }
-        assertTrue(pago != null);
-
-        try {
-            pago.setCodigoPa(1);
-            filasAfectadas= pagoDao.modificar(pago);
-        } catch (Exception e) {
-            System.out.println("Error:" + e.getMessage());
-        }
-         assertEquals((filasAfectadas > 0), true);
-         
-         List<Pago> lista = new ArrayList<>();
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE etiqueta
+        List<Pago> lista = new ArrayList<>();
         try {
             lista = pagoDao.obtener();
+            for (Pago c:lista){
+                
+                System.out.println("---Datos de Pago---");
+                 System.out.println("Codido  :"+c.getCodigoPa());
+                System.out.println("Fecha:"+c.getFecha());
+                System.out.println("Valor:"+c.getValor());
+                System.out.println("Prestamo :"+c.getPrestamo().getRegistroImporte());
+}
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
         }
         assertTrue(lista.size()>0);
-
-        try {            
-            filasAfectadas= pagoDao.eliminar(pago);
-        } catch (Exception e) {
-            System.out.println("Error:" + e.getMessage());
-        }
-         assertEquals((filasAfectadas > 0), true);
     }
-    
+
 }

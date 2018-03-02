@@ -69,7 +69,7 @@ public class FrmMenuPrincipal extends JFrame {
     JMenuItem mniEliminaInspector;
     JMenuItem mniBuscarInspector;
     JMenuItem mniListarInspector;
-    
+     JMenuItem mniMenuInspector;
     JDesktopPane dkpEscritorio;
     
     public FrmMenuPrincipal() {

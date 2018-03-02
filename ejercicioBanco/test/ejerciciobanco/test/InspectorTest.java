@@ -1,65 +1,50 @@
-/*/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package ejerciciobanco.test;
 
-import ejerciciobanco.accesodatos.*;
+package ejerciciobanco.Test;
 import ejerciciobanco.rnegocio.dao.*;
 import ejerciciobanco.rnegocio.entidades.*;
 import ejerciciobanco.rnegocio.implementacion.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import java.util.*;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
-/**
- *
- * @author Gilda
- */
-//
+
 public class InspectorTest {
+    
      public InspectorTest() {
     }
     @Test
-    public void testGeneral() {
-        IInspector inspectorDao=new InspectorImpl();
-       
-//TEST INSERTAR
-
-        int filas=0;
-        Inspector nuevoInspector=new Inspector();
-        try {
-            filas=inspectorDao.insertar(nuevoInspector);
-            System.out.println("Filas Insertadas:"+filas+"\n\n");
-        } catch (Exception e) {
+    public void pruebageneral(){
+        //              INSERTAR
+        int filasAfectadas =0;
+        IInspector inspectorDao = new InspectorImpl();
+        Inspector inspector  = new Inspector(2, "Juan","Perez",  "Riobamba", "Ing" );
+    
+        try{
+            filasAfectadas = inspectorDao.insertar(inspector);
+            System.out.println("Inspector ingresado!!!\n");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
-        assertEquals(filas>0, true);
-        
-//TEST OBTENER POR CODIGO
-/*
-        Inspector inspector=new Inspector();
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE etiqueta
+        List<Inspector> lista = new ArrayList<>();
         try {
-            inspector=inspectorDao.obtener(1);
-            System.out.println(inspector.CodigoI()+"    "+inspector.getNombre()+"    "+inspector.getApellido()+"    "+inspector.getDireccion()+"    "+inspector.getTitulo()"\n");
-        } catch (Exception e) {
-        }
-        
- */
-//TEST LISTADO
-
-    /*    ArrayList<Inspector> inspector=new ArrayList<>();
-        try {
-            inspector=inspectorDao.obtener();
-            for(Inspector rol:inspector){
-                System.out.println(inspector.getCodigoI()+"\t\t\t"+inspector.getNombre()+"\t\t\t"+inspector.getApellido()+"\t\t\t"+inspector.getDireccion()+"\t\t\t"+rol.getTitulo());
+            lista = inspectorDao.obtener();
+            for (Inspector c:lista){
+                System.out.println("---Datos de Inspector---");
+                System.out.println("Codigo :"+c.getCodigoI());
+                System.out.println("Nombres :"+c.getNombre());
+                System.out.println("Apellidos :"+c.getApellido());
+                System.out.println("Direccion :"+c.getDireccion());
+                System.out.println("Ttulo  :"+c.getTitulo());          
             }
         } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
         }
-        assertTrue(inspector.size()>0);*/
+        assertTrue(lista.size()>0);
     }
-    
-}
 
- 
+}

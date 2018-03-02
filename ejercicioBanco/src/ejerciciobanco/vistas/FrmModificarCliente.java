@@ -99,6 +99,7 @@ public class FrmModificarCliente extends JInternalFrame{
         pnlBotones.add(btnModificar);
         pnlBotones.add(btnLimpiar);
         this.add(pnlBotones, BorderLayout.SOUTH);
+        this.setClosable(true);
         //  this.setClosable(true);
     }
 

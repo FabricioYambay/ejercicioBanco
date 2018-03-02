@@ -25,11 +25,7 @@ public class Pago {
     }
 
     public Pago() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Pago(int i, Date date, double d, String pérez, Date date0, Date date1, Prestamo prestamo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     public int getCodigoPa() {

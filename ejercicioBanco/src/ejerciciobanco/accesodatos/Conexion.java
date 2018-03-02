@@ -12,9 +12,9 @@ import java.util.List;
 public class Conexion {
 
     final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    final String URL = "jdbc:sqlserver://192.168.100.18:1433;databaseName=Banco";
-    final String USER = "banco";
-    final String PASS = "banco";
+    final String URL = "jdbc:sqlserver://localhost:1433;databaseName=Banco";
+    final String USER = "Gilda";
+    final String PASS = "0258";
     Connection con = null;
 
     public void conectar() {

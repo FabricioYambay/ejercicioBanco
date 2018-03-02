@@ -13,17 +13,19 @@ import java.util.List;
 
 
 public class PagoImpl implements IPago {
-
-    @Override
+     
+       @Override
     public int insertar(Pago pago) throws Exception {
-    int numFilasAfectadas = 0;
-        String sql = "insert into Pago  values "
+        int numFilasAfectadas = 0;
+        String sql = "insert into pago  values "
                 + "(?,?,?,?)";
+ 
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, pago.getCodigoPa()));
         lstPar.add(new Parametro(2, pago.getFecha()));
         lstPar.add(new Parametro(3, pago.getValor()));
-        lstPar.add(new Parametro(4, pago.getPrestamo().getRegistroImporte()));
+        lstPar.add(new Parametro(4, pago.getPrestamo().getCodigoPr()));
+  
         Conexion con = null;
         try {
             con = new Conexion();
@@ -40,16 +42,18 @@ public class PagoImpl implements IPago {
     }
 
     @Override
+    
     public int modificar(Pago pago) throws Exception {
-       int numFilasAfectadas = 0;
-        String sql = "UPDATE Pago"
-                + "   SET codigoPa=?, Fecha=?, Valor=?, RegistroImporte=?"
-                + " where CodigoPa=?";
+        int numFilasAfectadas = 0;
+        String sql = "UPDATE pago"
+                + "  SET CodigoPa=?, Fecha=?, Valor=?, CodigoPr=?"
+                + " where idpago=?";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, pago.getCodigoPa()));
-        lstPar.add(new Parametro(2, pago.getFecha()));
-        lstPar.add(new Parametro(3, pago.getValor()));
-        lstPar.add(new Parametro(4, pago.getRegistroImporte()));
+        lstPar.add(new Parametro(4, pago.getCodigoPa()));
+        lstPar.add(new Parametro(1, pago.getFecha()));
+        lstPar.add(new Parametro(2, pago.getValor()));
+        lstPar.add(new Parametro(3, pago.getPrestamo().getCodigoPr()));
+   
         Conexion con = null;
         try {
             con = new Conexion();
@@ -67,8 +71,8 @@ public class PagoImpl implements IPago {
 
     @Override
     public int eliminar(Pago pago) throws Exception {
-     int numFilasAfectadas = 0;
-         String sql = "DELETE FROM Pago  where RegistroImporte=?";
+        int numFilasAfectadas = 0;
+         String sql = "DELETE FROM pago  where CodigoPa=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, pago.getCodigoPa()));       
         Conexion con = null;
@@ -87,11 +91,11 @@ public class PagoImpl implements IPago {
     }
 
     @Override
-    public Pago obtener(int CodigoPa) throws Exception {
-     Pago pago = null;
-        String sql = "SELECT CodigoPa, Fecha, Valor, RegistroImporte  FROM Pago where CodigoPa=?;";
+    public Pago obtener(int idpago) throws Exception {
+        Pago pago = null;
+        String sql = "SELECT * FROM pago where CodigoPa=?;";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, CodigoPa));
+        lstPar.add(new Parametro(1, idpago));
         Conexion con = null;
         try {
             con = new Conexion();
@@ -102,9 +106,10 @@ public class PagoImpl implements IPago {
                 pago.setCodigoPa(rst.getInt(1));
                 pago.setFecha(rst.getDate(2));
                 pago.setValor(rst.getDouble(3));
-                IPrestamo prestamodao = new PrestamoImpl();
-                Prestamo prestamo = prestamodao.obtener(rst.getInt(4));
+                IPrestamo prestamodao=new PrestamoImpl();
+                Prestamo prestamo=prestamodao.obtener(rst.getInt(4));
                 pago.setPrestamo(prestamo);
+
             }
         } catch (Exception e) {
             throw e;
@@ -114,11 +119,11 @@ public class PagoImpl implements IPago {
         }
         return pago;
     }
-
     @Override
-    public ArrayList<Pago> obtener() throws Exception {
-    List<Pago> lista = new ArrayList<>();
-         String sql = "SELECT CodigoPa, Fecha, Valor, RegistroImporte  FROM pago ";        
+    
+    public List<Pago> obtener() throws Exception {
+        List<Pago> lista = new ArrayList<>();
+         String sql = "SELECT *   FROM pago ";        
         Conexion con = null;
         try {
             con = new Conexion();
@@ -130,9 +135,10 @@ public class PagoImpl implements IPago {
                 pago.setCodigoPa(rst.getInt(1));
                 pago.setFecha(rst.getDate(2));
                 pago.setValor(rst.getDouble(3));
-               IPrestamo prestamodao = new PrestamoImpl();
-                Prestamo prestamo = prestamodao.obtener(rst.getInt(4));
+                IPrestamo prestamodao=new PrestamoImpl();
+                Prestamo prestamo=prestamodao.obtener(rst.getInt(4));
                 pago.setPrestamo(prestamo);
+
                 lista.add(pago);
             }
         } catch (Exception e) {
@@ -141,7 +147,7 @@ public class PagoImpl implements IPago {
             if(con!=null)
             con.desconectar();
         }
-        return (ArrayList<Pago>) lista;
-    }    
-    
+        return lista;
+    }
+
 }

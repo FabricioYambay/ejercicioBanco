@@ -25,8 +25,9 @@ public class Inspector {
     }
 
     public Inspector() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
     }
+
 
     public int getCodigoI() {
         return CodigoI;
@@ -67,11 +68,7 @@ public class Inspector {
     public void setTitulo(String Titulo) {
         this.Titulo = Titulo;
     }
-
-    public String CodigoI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-   
+    
+ 
 
 }

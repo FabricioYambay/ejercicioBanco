@@ -13,9 +13,9 @@ import java.util.List;
  * @author Wen
  */
 public interface IPago {
-    public int insertar(Pago pago) throws Exception;
+      public int insertar (Pago pago) throws Exception;
     public int modificar(Pago pago) throws Exception;
     public int eliminar(Pago pago) throws Exception;
-    public Pago obtener(int codigopa) throws Exception;
-    public List<Pago> obtener() throws Exception;    
+    public Pago obtener(int CodigoPa) throws Exception;
+    public List<Pago> obtener() throws Exception;
 }

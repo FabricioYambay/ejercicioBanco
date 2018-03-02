@@ -108,7 +108,7 @@ public class FrmNuevoPago extends JInternalFrame{
     }
 
     public void btnAceptarActionListener(ActionEvent e) {
-       IPago estudianteDao = new PagoImpl();
+       IPago pagoDao = new PagoImpl();
        Pago pago = new Pago();
         pago.setCodigoPa(Integer.parseInt(txtCodigoPa.getText()));
           DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");

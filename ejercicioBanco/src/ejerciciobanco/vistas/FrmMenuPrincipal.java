@@ -338,9 +338,9 @@ public class FrmMenuPrincipal extends JFrame {
         frm.setVisible(true);
     }
     public void mniBuscarPrestamoActionPerformed(ActionEvent e) {
-        FrmBuscaPrestamo frm = new FrmBuscaPrestamo();
-        dkpEscritorio.add(frm);
-        frm.setVisible(true);
+//        FrmBuscaPrestamo frm = new FrmBuscaPrestamo();
+//        dkpEscritorio.add(frm);
+//        frm.setVisible(true);
     }
     public void mniListarPrestamoActionPerdormed(ActionEvent e) {
         FrmListaPrestamo frm = new FrmListaPrestamo();

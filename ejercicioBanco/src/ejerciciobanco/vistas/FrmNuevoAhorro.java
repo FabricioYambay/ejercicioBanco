@@ -49,6 +49,7 @@ public class FrmNuevoAhorro extends JFrame {
         pnlInterno.add(txInteres);
 
         this.add(pnlInterno, BorderLayout.CENTER);
+        
         btnIngresar = new JButton("Insertar");
         btnIngresar.addActionListener(new ActionListener() {
             @Override

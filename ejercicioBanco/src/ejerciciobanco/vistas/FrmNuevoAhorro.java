@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ejerciciobanco.vistas;
 
 import javax.swing.*;
@@ -9,55 +14,40 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-
-public class FrmNuevaCuenta extends JFrame {
-
+public class FrmNuevoAhorro extends JFrame{
+    
     JLabel lblTitulo;
-    JLabel lblNumeroC;
-    JLabel lblSaldo;
-    JLabel lblCodigoC;
-    JLabel lblMovimeinto;
-    JLabel lblCodigoS;
-
-    JTextField txNumeroC;
-    JTextField txSaldo;
-    JTextField txCodigoC;
-    JTextField txMovimeinto;
-    JTextField txECodigoS;
-
+    JLabel lblNumeroA;
+    JLabel lblInteres;
+    
+    JTextField txNumeroA;
+    JTextField txInteres;
+    
+    
     JButton btnIngresar;
     JButton btnLimpiar;
     JPanel pnlInterno;
     JPanel pnlBotones;
     JPanel pnlPrincipal;
 
-    public FrmNuevaCuenta() {
-
+    public FrmNuevoAhorro() {
+        
         this.setSize(420, 680);
         this.setLayout(new BorderLayout());
         lblTitulo = new JLabel("NUEVA CUENTA");
         this.add(lblTitulo, BorderLayout.NORTH);
-        lblNumeroC = new JLabel("NUMERO DE CUENTA: ");
-        lblSaldo = new JLabel("SALDO: ");
-        lblCodigoC = new JLabel("CODIGO CLIENTE: ");
-        lblMovimeinto = new JLabel("MOVIMIENTO: ");
-        lblCodigoS = new JLabel("CODIGO SUCURSSAL: ");
-        txNumeroC = new JTextField("");
-        txSaldo = new JTextField("");
-        txCodigoC = new JTextField("");
-        txMovimeinto = new JTextField("");
-        txECodigoS = new JTextField("");
+        lblNumeroA = new JLabel("NUMERO DE CUENTA Ahorros: ");
+        lblInteres = new JLabel("INTERES: ");
+       
+        txNumeroA = new JTextField("");
+        txInteres = new JTextField("");
+       
         pnlInterno = new JPanel(new GridLayout(5, 2, 10, 10));
-        pnlInterno.add(lblNumeroC);
-        pnlInterno.add(txNumeroC);
-        pnlInterno.add(lblSaldo);
-        pnlInterno.add(txSaldo);
-        pnlInterno.add(lblCodigoC);
-        pnlInterno.add(txCodigoC);
-        pnlInterno.add(lblMovimeinto);
-        pnlInterno.add(txMovimeinto);
-        pnlInterno.add(lblCodigoS);
-        pnlInterno.add(txECodigoS);
+        pnlInterno.add(lblNumeroA);
+        pnlInterno.add(txNumeroA);
+        pnlInterno.add(lblInteres);
+        pnlInterno.add(txInteres);
+      
 
         this.add(pnlInterno, BorderLayout.CENTER);
         btnIngresar = new JButton("Insertar");
@@ -88,36 +78,22 @@ public class FrmNuevaCuenta extends JFrame {
         this.add(pnlBotones, BorderLayout.SOUTH);
         //   this.setClosable(true);
     }
-    
-    
-    
-    
-     public static void main(String[] args) {
+        public static void main(String[] args) {
 
-        FrmNuevaCuenta frmMenu = new FrmNuevaCuenta();
+        FrmNuevoAhorro frmMenu = new FrmNuevoAhorro();
         frmMenu.setVisible(true);
 
     }
-     
-     public void btnIngresarActionListener(ActionEvent e){
-        Cuenta nCuenta=new Cuenta();
-        ICuenta clientDao=new CuentaImpl();
-        Cliente nCliente=new Cliente();
-        ICliente clienteDao=new ClienteImpl();
-        Sucursal nSur = new Sucursal();
-        ISucursal surdao = new SucursalImpl();
+         public void btnIngresarActionListener(ActionEvent e){
+        CuentaAhorro nCuenta=new CuentaAhorro();
+        ICuentaAhorro clientDao=new CuentaAhorroImpl();
+        
         
         try {
-            Cuenta ct = new Cuenta();
-            nCliente = new Cliente();
-            nSur = new Sucursal();
-            nCliente=clienteDao.obtener(txCodigoC.getText());
-            ct.setCliente(nCliente);
-            nCuenta.setNumerocuenta(txNumeroC.getText());
-            nCuenta.setSaldo(Double.parseDouble(txSaldo.getText()));;
-            nSur = surdao.obtener(Integer.parseInt(txECodigoS.getText()));
-            ct.setSucursal(nSur);
-            nCuenta.setMovimiento(Double.parseDouble(txMovimeinto.getText()));
+            
+           
+            nCuenta.setCodigoca(Integer.parseInt(txNumeroA.getText()));
+            nCuenta.setInteres(Double.parseDouble(txInteres.getText()));
           
             if(clientDao.insertar(nCuenta)>0){
                 JOptionPane.showMessageDialog(this,"Cuenta Ingresado Correctamente!!",
@@ -132,8 +108,9 @@ public class FrmNuevaCuenta extends JFrame {
                 "Transacción", JOptionPane.ERROR_MESSAGE);
         }
     }
-     
-     
-     
+    }
+    
+    
+    
+    
 
-}

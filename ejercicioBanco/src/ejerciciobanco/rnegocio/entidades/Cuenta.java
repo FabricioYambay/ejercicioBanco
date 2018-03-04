@@ -5,20 +5,17 @@ package ejerciciobanco.rnegocio.entidades;
 public class Cuenta {
     private Cliente cliente;
     private Sucursal sucursal;
-   private String numerocuenta;
-    private  String tipocuenta;
+    private String numerocuenta;
     private double saldo;
     private double movimiento;
 
     public Cuenta() {
     }
 
-    public Cuenta(Cliente cliente, Sucursal sucursal, Prestamo prestamo, String numerocuenta, String tipocuenta, double saldo, double movimiento) {
+    public Cuenta(Cliente cliente, Sucursal sucursal, String numerocuenta, double saldo, double movimiento) {
         this.cliente = cliente;
         this.sucursal = sucursal;
-        
         this.numerocuenta = numerocuenta;
-        this.tipocuenta = tipocuenta;
         this.saldo = saldo;
         this.movimiento = movimiento;
     }
@@ -39,22 +36,12 @@ public class Cuenta {
         this.sucursal = sucursal;
     }
 
-    
-
     public String getNumerocuenta() {
         return numerocuenta;
     }
 
     public void setNumerocuenta(String numerocuenta) {
         this.numerocuenta = numerocuenta;
-    }
-
-    public String getTipocuenta() {
-        return tipocuenta;
-    }
-
-    public void setTipocuenta(String tipocuenta) {
-        this.tipocuenta = tipocuenta;
     }
 
     public double getSaldo() {
@@ -72,8 +59,8 @@ public class Cuenta {
     public void setMovimiento(double movimiento) {
         this.movimiento = movimiento;
     }
-    
-    
+
+   
     
 
     

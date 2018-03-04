@@ -1,6 +1,9 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ejerciciobanco.vistas;
-   
 
 import javax.swing.*;
 import ejerciciobanco.rnegocio.dao.*;
@@ -11,56 +14,58 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-
-
-public class FrmEliminarAhorro extends JFrame{
+public class FrmModificarCredito extends JFrame{
     
-    
-    JLabel lblTitulo;
-    JLabel lblNumeroA;
-    JLabel lblInteres;
+      JLabel lblTitulo;
+    JLabel lblNumeroCC;
+    JLabel lblSobregiro;
 
-    JTextField txNumeroA;
-    JTextArea txInteres;
+    JTextField txNumeroCC;
+    JTextArea txSobregiro;
 
-    JButton btnEliminar;
     JButton btnBuscar;
+    JButton btnModificar;
     JButton btnLimpiar;
     JPanel pnlInterno;
     JPanel pnlBotones;
     JPanel pnlPrincipal;
-    CuentaAhorro cu;
+    
+    CuentaCredito cre;
 
-    public FrmEliminarAhorro() {
+    public FrmModificarCredito() {
         
-         this.setSize(420, 680);
+        
+        
+     this.setSize(420, 680);
         this.setLayout(new BorderLayout());
-        lblTitulo = new JLabel("NUEVA CUENTA");
+        lblTitulo = new JLabel("Modificar CUENTA");
         this.add(lblTitulo, BorderLayout.NORTH);
-        lblNumeroA = new JLabel("NUMERO DE CUENTA Ahorros: ");
-        lblInteres = new JLabel("INTERES: ");
+        lblNumeroCC = new JLabel("NUMERO DE CREDITO: ");
+        lblSobregiro = new JLabel("Sobregiro: ");
 
-        txNumeroA = new JTextField("");
-        txInteres = new JTextArea("");
+        txNumeroCC = new JTextField("");
+        txSobregiro = new JTextArea("");
 
         pnlInterno = new JPanel(new GridLayout(5, 2, 10, 10));
-        pnlInterno.add(lblNumeroA);
-        pnlInterno.add(txNumeroA);
-        pnlInterno.add(lblInteres);
-        pnlInterno.add(txInteres);
+        pnlInterno.add(lblNumeroCC);
+        pnlInterno.add(txNumeroCC);
+        pnlInterno.add(lblSobregiro);
+        pnlInterno.add(txSobregiro);
 
         this.add(pnlInterno, BorderLayout.CENTER);
-        btnEliminar= new JButton("Eliminar");
-        btnEliminar.addActionListener(new ActionListener() {
+        
+          btnModificar = new JButton("Insertar");
+        btnModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    btnEliminarActionListener(e);
+                    btnModificarActionListener(e);
                 } catch (Exception ex) {
                     System.out.println("Error:" + ex.getMessage());
                 }
             }
         });
+
         btnBuscar = new JButton("Buscar");
         btnBuscar.addActionListener(new ActionListener() {
             @Override
@@ -89,17 +94,29 @@ public class FrmEliminarAhorro extends JFrame{
         this.add(pnlBotones, BorderLayout.SOUTH);
         //   this.setClosable(true);
     }
-    
-     public void btnEliminarActionListener(ActionEvent e) {
-         cu = new CuentaAhorro();
-        ICuentaAhorro clientDao = new CuentaAhorroImpl();
 
+    public void btnBuscarActionListener(ActionEvent e) {
+        cre = new CuentaCredito();
+        ICuentaCredito clientDao = new CuentaCreditoImpl();
         try {
 
-            cu.setCodigoca(txNumeroA.getText());
-            cu.setInteres(Double.parseDouble(txInteres.getText()));
+            cre = clientDao.obtener(Integer.parseInt(txNumeroCC.getText()));
+            txSobregiro.setText(String.valueOf(cre.getValorsobregiro()));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(),
+                    "Transacción", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+     public void btnModificarActionListener(ActionEvent e) {
+        cre = new CuentaCredito();
+        ICuentaCredito clientDao = new CuentaCreditoImpl();
+        try {
 
-            if (clientDao.eliminar(cu) > 0) {
+            cre.setCodigocc(Integer.parseInt(txNumeroCC.getText()));
+            cre.setValorsobregiro(Double.parseDouble(txSobregiro.getText()));
+
+            if (clientDao.modificar(cre) > 0) {
                 JOptionPane.showMessageDialog(this, "Cuenta Ingresado Correctamente!!",
                         "Transacción", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -111,36 +128,13 @@ public class FrmEliminarAhorro extends JFrame{
                     "Transacción", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    public void btnBuscarActionListener(ActionEvent e) {
-        cu = new CuentaAhorro();
-        ICuentaAhorro clientDao = new CuentaAhorroImpl();
-
-        try {
-            
-            
-            cu = clientDao.obtener(Integer.parseInt(txNumeroA.getText()));
-            txInteres.setText(String.valueOf(cu.getInteres()));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(),
-                    "Transacción", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+    
 
     public static void main(String[] args) {
 
-        FrmEliminarAhorro frmMenu = new FrmEliminarAhorro();
+        FrmModificarCredito frmMenu = new FrmModificarCredito();
         frmMenu.setVisible(true);
 
     }
-        
-        
-        
-        
-    }
-
     
-    
-    
-    
-    
+}

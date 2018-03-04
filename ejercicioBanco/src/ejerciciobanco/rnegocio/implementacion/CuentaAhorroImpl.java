@@ -19,14 +19,11 @@ public class CuentaAhorroImpl implements ICuentaAhorro{
     
       public int insertar(CuentaAhorro cuentaahorro) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "insert into CuentaAhorros  values "
-                + "(?,?,?)";
+        String sql = "insert into CuentaAhorro (CodigoCA, Interes)  values  (?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, cuentaahorro.getCodigoca()));
         lstPar.add(new Parametro(2, cuentaahorro.getInteres()));
-        lstPar.add(new Parametro(3, cuentaahorro.getCuenta().getNumerocuenta()));
-       
-     
+ 
         Conexion con = null;
         try {
             con = new Conexion();
@@ -44,11 +41,11 @@ public class CuentaAhorroImpl implements ICuentaAhorro{
     @Override
     public int modificar(CuentaAhorro cuentaahorro) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "UPDATE CuentaAhorro" + "   SET CodigoCA=?,Interes=?, Numerocuenta=? "  + " where CodigoCA=?";
+        String sql = "UPDATE CuentaAhorro" + "   SET CodigoCA=?,Interes=?"  + " where CodigoCA=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, cuentaahorro.getCodigoca()));
         lstPar.add(new Parametro(2, cuentaahorro.getInteres()));
-        lstPar.add(new Parametro(3, cuentaahorro.getCuenta().getNumerocuenta()));
+  
         Conexion con = null;
         try {
             con = new Conexion();
@@ -88,7 +85,7 @@ public int eliminar(CuentaAhorro cuentaahorro) throws Exception {
     @Override
     public CuentaAhorro obtener(int codigoca) throws Exception {
         CuentaAhorro cuentaahorro = null;
-        String sql = "SELECT *   FROM cuenta_Ahorros where n_cuenta=?;";
+        String sql = "SELECT *   FROM CuentaAhorro where codigoca=?;";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, codigoca));
         Conexion con = null;
@@ -98,14 +95,8 @@ public int eliminar(CuentaAhorro cuentaahorro) throws Exception {
             ResultSet rst = con.ejecutaQuery(sql, lstPar);
             while (rst.next()) {
                 cuentaahorro = new CuentaAhorro();
-                cuentaahorro.setCodigoca(rst.getInt(1));
-                ICuenta cuentadao=new CuentaImpl();
+                cuentaahorro.setCodigoca(rst.getString(1));
                 cuentaahorro.setInteres(rst.getDouble(2));
-                Cuenta cuenta=cuentadao.obtener(rst.getInt(3));
-                cuentaahorro.setCuenta(cuenta);
-                
-            
-
             }
         } catch (Exception e) {
             throw e;
@@ -129,11 +120,9 @@ public int eliminar(CuentaAhorro cuentaahorro) throws Exception {
             CuentaAhorro cuentaahorro=null;
             while (rst.next()) {
                 cuentaahorro = new CuentaAhorro();
-                cuentaahorro.setCodigoca(rst.getInt(1));
+                cuentaahorro.setCodigoca(rst.getString(1));
                 cuentaahorro.setInteres(rst.getInt(2));
-                ICuenta cuentadao=new CuentaImpl();
-                Cuenta cuenta=cuentadao.obtener(rst.getInt(3));
-                cuentaahorro.setCuenta(cuenta);
+
                 
                 lista.add(cuentaahorro);
             }

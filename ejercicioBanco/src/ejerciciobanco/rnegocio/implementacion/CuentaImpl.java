@@ -13,10 +13,9 @@ public class CuentaImpl implements ICuenta {
     @Override
     public int insertar(Cuenta cuenta) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "insert into cuenta  values " + "(?,?,?,?,?)";
+        String sql = "insert into cuenta (NumCuenta, Saldo, Movimiento, CodigoC, CodigoS)  values  (?,?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, cuenta.getNumerocuenta()));
-
         lstPar.add(new Parametro(2, cuenta.getSaldo()));
         lstPar.add(new Parametro(3, cuenta.getMovimiento()));
         lstPar.add(new Parametro(4, cuenta.getCliente().getCedula()));
@@ -41,7 +40,6 @@ public class CuentaImpl implements ICuenta {
         String sql = "update  Cuenta set Numerocuenta=?,Saldo=?,Movimiento=?,CodigoC=?,CodigoS=? where Numerocuenta=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, cuenta.getNumerocuenta()));
-
         lstPar.add(new Parametro(2, cuenta.getSaldo()));
         lstPar.add(new Parametro(3, cuenta.getMovimiento()));
         lstPar.add(new Parametro(4, cuenta.getCliente().getCedula()));
@@ -115,7 +113,6 @@ public class CuentaImpl implements ICuenta {
                 cuenta = new Cuenta();
                 cuenta.setCliente(cliente);
                 cuenta.setNumerocuenta(rst.getString(1));
-
                 cuenta.setSaldo(rst.getDouble(2));
                 cuenta.setMovimiento(rst.getDouble(3));
                 ICliente clientedao= new ClienteImpl();

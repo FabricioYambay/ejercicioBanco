@@ -10,6 +10,7 @@ package ejerciciobanco.rnegocio.entidades;
  * @author CRISTIAN
  */
 public class Sucursal {
+    private  String nombrebanco;
     private int codigoS;
     private String ciudad;
     private String direccion;
@@ -18,13 +19,15 @@ public class Sucursal {
     public Sucursal() {
     }
 
-    public Sucursal(int codigoS, String ciudad, String direccion, String telefono, String email) {
+    public Sucursal(String nombrebanco, int codigoS, String ciudad, String direccion, String telefono, String email) {
+        this.nombrebanco = nombrebanco;
         this.codigoS = codigoS;
         this.ciudad = ciudad;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
     }
+
     
     public String getTelefono() {
         return telefono;
@@ -70,4 +73,12 @@ public class Sucursal {
     public String toString() {
         return ciudad;
     }    
+
+    public String getNombrebanco() {
+        return nombrebanco;
+    }
+
+    public void setNombrebanco(String nombrebanco) {
+        this.nombrebanco = nombrebanco;
+    }
 }

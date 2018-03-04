@@ -49,19 +49,18 @@ public class FrmNuevaSucursal extends JInternalFrame {
         pnlCentral.setLayout(new GridLayout(10, 2, 5, 5));
         pnlPie.setLayout(new GridLayout(1, 2, 5, 5));
 
-        lblTitulo = new JLabel("    Sucursal");
-
+        lblTitulo = new JLabel("BANCO AHORRADOR DATOS DE SUCURSAL");
         lblCodigoS = new JLabel("Código:");
         lblCiudad = new JLabel("Ciudad:");
         lblDireccion = new JLabel("Direccion:");
-        lblTelefono = new JLabel("Prestamo:");
+        lblTelefono = new JLabel("Telefono:");
         lblEmail = new JLabel("Email:");
 
-        txtCodigoS = new JTextField(2);
-        txtCiudad = new JTextField(2);
-        txtDireccion = new JTextField(2);
-        txtTelefono = new JTextField(2);
-        txtEmail = new JTextField(2);
+        txtCodigoS = new JTextField();
+        txtCiudad = new JTextField();
+        txtDireccion = new JTextField();
+        txtTelefono = new JTextField();
+        txtEmail = new JTextField();
 
         btnLimpiar = new JButton("Limpiar");
         btnAceptar = new JButton("Aceptar");
@@ -106,8 +105,8 @@ public class FrmNuevaSucursal extends JInternalFrame {
         sucursal.setCodigoS(Integer.parseInt(txtCodigoS.getText()));
         sucursal.setCiudad(txtCiudad.getText());
         sucursal.setDireccion(txtDireccion.getText());
-        sucursal.setDireccion(txtTelefono.getText());
-        sucursal.setDireccion(txtEmail.getText());
+        sucursal.setTelefono(txtTelefono.getText());
+        sucursal.setEmail(txtEmail.getText());
 
         try {
             if (sucursalDao.insertar(sucursal) > 0) {

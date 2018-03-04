@@ -26,13 +26,14 @@ public class SucursalImpl implements ISucursal {
     public int insertar(Sucursal sucursal) throws Exception {
         int numFilasAfectadas = 0;
         String sql = "insert into Sucursal  values "
-                + "(?,?,?,?,?)";
+                + "(?,?,?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, sucursal.getCodigoS()));
-        lstPar.add(new Parametro(2, sucursal.getCiudad()));
-        lstPar.add(new Parametro(3, sucursal.getDireccion()));
-        lstPar.add(new Parametro(4, sucursal.getTelefono()));
-        lstPar.add(new Parametro(5, sucursal.getEmail()));
+        lstPar.add(new Parametro(2, sucursal.getNombrebanco()));
+        lstPar.add(new Parametro(3, sucursal.getCiudad()));
+        lstPar.add(new Parametro(4, sucursal.getDireccion()));
+        lstPar.add(new Parametro(5, sucursal.getTelefono()));
+        lstPar.add(new Parametro(6, sucursal.getEmail()));
 
         Conexion con = null;
         try {
@@ -53,15 +54,16 @@ public class SucursalImpl implements ISucursal {
     public int modificar(Sucursal sucursal) throws Exception {
         int numFilasAfectadas = 0;
         String sql = "UPDATE sucursal"
-                + "   SET codigoS=?, ciudad=?, direccion=?,telefono=?,email=? "
+                + "   SET codigoS=?, NombreBanco=?, ciudad=?, direccion=?,telefono=?,email=? "
                 + " where codigoS=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, sucursal.getCodigoS()));
-        lstPar.add(new Parametro(2, sucursal.getCiudad()));
-        lstPar.add(new Parametro(3, sucursal.getDireccion()));
-        lstPar.add(new Parametro(4, sucursal.getTelefono()));
-        lstPar.add(new Parametro(5, sucursal.getEmail()));
-
+        lstPar.add(new Parametro(2, sucursal.getNombrebanco()));
+        lstPar.add(new Parametro(3, sucursal.getCiudad()));
+        lstPar.add(new Parametro(4, sucursal.getDireccion()));
+        lstPar.add(new Parametro(5, sucursal.getTelefono()));
+        lstPar.add(new Parametro(6, sucursal.getEmail()));
+        lstPar.add(new Parametro(7, sucursal.getCodigoS()));
         Conexion con = null;
         try {
             con = new Conexion();
@@ -80,7 +82,7 @@ public class SucursalImpl implements ISucursal {
     @Override
     public int eliminar(Sucursal sucursal) throws Exception {
         int numFilasAfectadas = 0;
-        String sql = "DELETE FROM sucursal  where codigoS=?";
+        String sql = "DELETE FROM Sucursal  where codigoS=?";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, sucursal.getCodigoS()));
         Conexion con = null;
@@ -101,7 +103,7 @@ public class SucursalImpl implements ISucursal {
     @Override
     public Sucursal obtener(int codigoS) throws Exception {
         Sucursal sucursal = null;
-        String sql = "SELECT * FROM sucursal where codigoS=?;";
+        String sql = "SELECT * FROM Sucursal where CodigoS=?;";
         List<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, codigoS));
         Conexion con = null;
@@ -113,10 +115,11 @@ public class SucursalImpl implements ISucursal {
             while (rst.next()) {
                 sucursal = new Sucursal();
                 sucursal.setCodigoS(rst.getInt(1));
-                sucursal.setCiudad(rst.getString(2));
-                sucursal.setDireccion(rst.getString(3));
-                sucursal.setTelefono(rst.getString(4));
-                sucursal.setEmail(rst.getString(5));
+                sucursal.setNombrebanco(rst.getString(2));
+                sucursal.setCiudad(rst.getString(3));
+                sucursal.setDireccion(rst.getString(4));
+                sucursal.setTelefono(rst.getString(5));
+                sucursal.setEmail(rst.getString(6));
 
             }
         } catch (Exception e) {
@@ -143,11 +146,11 @@ public class SucursalImpl implements ISucursal {
             while (rst.next()) {
                 sucursal = new Sucursal();
                 sucursal.setCodigoS(rst.getInt(1));
-                sucursal.setCiudad(rst.getString(2));
-                sucursal.setDireccion(rst.getString(3));
-                sucursal.setTelefono(rst.getString(4));
-                sucursal.setEmail(rst.getString(5));
-
+                sucursal.setNombrebanco(rst.getString(2));
+                sucursal.setCiudad(rst.getString(3));
+                sucursal.setDireccion(rst.getString(4));
+                sucursal.setTelefono(rst.getString(5));
+                sucursal.setEmail(rst.getString(6));
                 lista.add(sucursal);
             }
         } catch (Exception e) {

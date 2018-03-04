@@ -72,16 +72,16 @@ public class FrmNuevaCuenta extends JFrame {
             }
         });
         btnLimpiar = new JButton("Limpiar");
-//        btnLimpiar.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                try {
-//                    btnLimpiarActionListener(e);
-//                } catch (Exception ex) {
-//                    System.out.println("Error:" + ex.getMessage());
-//                }
-//            }
-//        });
+        btnLimpiar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    btnLimpiarActionListener(e);
+                } catch (Exception ex) {
+                    System.out.println("Error:" + ex.getMessage());
+                }
+            }
+        });
         pnlBotones = new JPanel(new GridLayout(1, 2, 10, 10));
         pnlBotones.add(btnIngresar);
         pnlBotones.add(btnLimpiar);
@@ -89,7 +89,13 @@ public class FrmNuevaCuenta extends JFrame {
         //   this.setClosable(true);
     }
     
-    
+    public void btnLimpiarActionListener(ActionEvent e){
+        txCodigoC.setText("");
+        txECodigoS.setText("");
+        txMovimeinto.setText("");
+        txNumeroC.setText("");
+        txSaldo.setText("");
+    }
     
     
      public static void main(String[] args) {
@@ -101,25 +107,25 @@ public class FrmNuevaCuenta extends JFrame {
      
      public void btnIngresarActionListener(ActionEvent e){
         Cuenta nCuenta=new Cuenta();
-        ICuenta clientDao=new CuentaImpl();
+        ICuenta cuentaDao=new CuentaImpl();
         Cliente nCliente=new Cliente();
         ICliente clienteDao=new ClienteImpl();
         Sucursal nSur = new Sucursal();
         ISucursal surdao = new SucursalImpl();
         
         try {
-            Cuenta ct = new Cuenta();
+            nCuenta = new Cuenta();
             nCliente = new Cliente();
             nSur = new Sucursal();
-            nCliente=clienteDao.obtener(txCodigoC.getText());
-            ct.setCliente(nCliente);
             nCuenta.setNumerocuenta(txNumeroC.getText());
-            nCuenta.setSaldo(Double.parseDouble(txSaldo.getText()));;
-            nSur = surdao.obtener(Integer.parseInt(txECodigoS.getText()));
-            ct.setSucursal(nSur);
+            nCuenta.setSaldo(Double.parseDouble(txSaldo.getText()));
             nCuenta.setMovimiento(Double.parseDouble(txMovimeinto.getText()));
+            nCliente=clienteDao.obtener(txCodigoC.getText());
+            nCuenta.setCliente(nCliente);
+            nSur = surdao.obtener(Integer.parseInt(txECodigoS.getText()));
+            nCuenta.setSucursal(nSur);
           
-            if(clientDao.insertar(nCuenta)>0){
+            if(cuentaDao.insertar(nCuenta)>0){
                 JOptionPane.showMessageDialog(this,"Cuenta Ingresado Correctamente!!",
                 "Transacción", JOptionPane.INFORMATION_MESSAGE);
             }

@@ -298,7 +298,7 @@ public class FrmMenuPrincipal extends JFrame {
         
         mnbPrincipal.add(mnInicio);
         mnbPrincipal.add(mnCliente);
-//        mnbPrincipal.add(mnCuenta);
+ //       mnbPrincipal.add(mnCuenta);
         mnbPrincipal.add(mnPedido);
         mnbPrincipal.add(mnPago);
         mnbPrincipal.add(mnSucursal);
